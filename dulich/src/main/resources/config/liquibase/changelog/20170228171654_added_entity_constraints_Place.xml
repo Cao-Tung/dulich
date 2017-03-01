@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Place.
+    -->
+    <changeSet id="20170228171654-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="places_id"
+                                 baseTableName="place_tour"
+                                 constraintName="fk_place_tour_places_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="place"/>
+        <addForeignKeyConstraint baseColumnNames="tours_id"
+                                 baseTableName="place_tour"
+                                 constraintName="fk_place_tour_tours_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tour"/>
+        
+        <addForeignKeyConstraint baseColumnNames="region_id"
+                                 baseTableName="place"
+                                 constraintName="fk_place_region_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="region"/>
+
+    </changeSet>
+</databaseChangeLog>
