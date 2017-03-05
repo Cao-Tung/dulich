@@ -63,6 +63,35 @@
                 }]
             }
         })
+        .state('post-place', {
+            parent: 'app',
+            url: '/post-place',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/post/post-place.html',
+                    controller: 'PostPlaceController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                posts: ['Post', function(Post) {
+                    return Post.query().$promise;
+                }],
+                tours: ['Tour', function(Tour) {
+                    return Tour.query().$promise;
+                }],
+                hotels: ['Hotel', function(Hotel) {
+                    return Hotel.query().$promise;
+                }],
+                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('home');
+                    return $translate.refresh();
+                }]
+            }
+        })
         .state('post-detail.edit', {
             parent: 'post-detail',
             url: '/detail/edit',

@@ -11,11 +11,11 @@
         var vm = this;
 
         vm.post = entity;
-        vm.previousState = previousState.name;
+        // vm.previousState = previousState.name;
 
-        var unsubscribe = $rootScope.$on('dulichApp:postUpdate', function(event, result) {
-            vm.post = result;
-        });
-        $scope.$on('$destroy', unsubscribe);
+        // var unsubscribe = $rootScope.$on('dulichApp:postUpdate', function(event, result) {
+        //     vm.post = result;
+        // });
+        // $scope.$on('$destroy', unsubscribe);
     }
 })();
