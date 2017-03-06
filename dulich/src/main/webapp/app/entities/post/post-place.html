@@ -71,7 +71,79 @@
 				</p>
 			</div>
 		</div>
-		<div class="row well ui raised segment">
+		<div class="row well ui raised segment ">
+			<div class="five wide column">
+				<div class="">
+					<div class="ui-items">
+						<div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Đọc Nhiều</h5></div>
+						<a href="#" class="list-group-item" ng-repeat="post in vm.posts">
+							<div class="ui items">
+								<div class="item">
+									<div class="ui top aligned">
+										<i class="tags red icon"></i>
+									</div>
+									<div class="content">
+										<div class="description">
+											<p>{{post.title}}</p>
+											<small class="text-muted">{{post.createDate}}</small>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row well ui raised segment ">
+			<div class="five wide column">
+				<div class="">
+					<div class="ui-items">
+						<div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Công Ty Tổ Chức Tour Sapa</h5></div>
+						<a href="#" class="list-group-item" ng-repeat="tour in vm.tours">
+							<div class="ui items">
+								<div class="item">
+									<div class="ui top aligned">
+										<i class="tags red icon"></i>
+									</div>
+									<div class="content">
+										<div class="description">
+											<p>{{tour.nameCompany}}</p>
+										<!-- 	<small class="text-muted">{{tour.createDate}}</small> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row well ui raised segment ">
+			<div class="five wide column">
+				<div class="">
+					<div class="ui-items">
+						<div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Khách Sạn Gía Tốt</h5></div>
+						<a href="#" class="list-group-item" ng-repeat="hotel in vm.hotels">
+							<div class="ui items">
+								<div class="item">
+									<div class="ui top aligned">
+										<i class="tags red icon"></i>
+									</div>
+									<div class="content">
+										<div class="description">
+											<p>{{hotel.nameHotel}}</p>
+										<!-- 	<small class="text-muted">{{tour.createDate}}</small> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="row well ui raised segment ">
 			<p>Danh sách các bài viết</p>
 			<div ui middle aligned divided list>
 				<ul style="list-style-type: none">
@@ -109,7 +181,7 @@
 					</li>
 				</ul>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<div class="fb-comments" data-href="http://localhost:8080/#/real-estate/detail//{{vm.post.id}}" data-numposts="5"></div>
 </div>
