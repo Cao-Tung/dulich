@@ -17,6 +17,12 @@
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
     <!-- endbuild -->
+    <link href="/bower_components/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/bower_components/css/stylish-portfolio.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body ng-app="dulichApp" ng-strict-di>
     <!--[if lt IE 9]>
@@ -25,12 +31,45 @@
    <!--  <page-ribbon></page-ribbon> -->
     <div ui-view="navbar" ng-cloak></div>
     <div class="container">
-        <div ui-view="content">
+        <div  ui-view="content">
             <!-- Angular views -->
         </div>
 
         <div class="footer " ng-cloak>
-            <p data-translate="footer">This is your footer</p>
+            <!-- <p data-translate="footer">This is your footer</p> -->
+            <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>Bap Benh Team</strong>
+                    </h4>
+                    <p> T9,Tòa nhà B1, 31 Tạ Quang Bửu, Quận Hai Bà Trưng, Hà Nội
+                        <br>  </p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> 012 345 6789</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto: phamduyhieuit@gmail.com">phamduyhieuit@gmail.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-google fa-fw fa-3x"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; My Website 2017</p>
+                </div>
+            </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
         </div>
     </div>
 
