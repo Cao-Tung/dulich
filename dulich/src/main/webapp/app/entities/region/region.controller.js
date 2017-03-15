@@ -5,12 +5,14 @@
         .module('dulichApp')
         .controller('RegionController', RegionController);
 
-    RegionController.$inject = ['$scope', '$state', 'Region'];
+    RegionController.$inject = ['$scope', '$state', 'DataUtils', 'Region'];
 
-    function RegionController ($scope, $state, Region) {
+    function RegionController ($scope, $state, DataUtils, Region) {
         var vm = this;
 
         vm.regions = [];
+        vm.openFile = DataUtils.openFile;
+        vm.byteSize = DataUtils.byteSize;
 
         loadAll();
 

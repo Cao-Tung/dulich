@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,8 +28,13 @@ public class Hotel implements Serializable {
     @Column(name = "name_hotel")
     private String nameHotel;
 
+    @Size(max = 50000000)
+    @Lob
     @Column(name = "avatar")
-    private String avatar;
+    private byte[] avatar;
+
+    @Column(name = "avatar_content_type")
+    private String avatarContentType;
 
     @Column(name = "link")
     private String link;
@@ -65,17 +71,30 @@ public class Hotel implements Serializable {
         this.nameHotel = nameHotel;
     }
 
-    public String getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
     }
 
-    public Hotel avatar(String avatar) {
+    public Hotel avatar(byte[] avatar) {
         this.avatar = avatar;
         return this;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    public String getAvatarContentType() {
+        return avatarContentType;
+    }
+
+    public Hotel avatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
+        return this;
+    }
+
+    public void setAvatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
     }
 
     public String getLink() {
@@ -168,6 +187,7 @@ public class Hotel implements Serializable {
             "id=" + id +
             ", nameHotel='" + nameHotel + "'" +
             ", avatar='" + avatar + "'" +
+            ", avatarContentType='" + avatarContentType + "'" +
             ", link='" + link + "'" +
             ", price='" + price + "'" +
             '}';

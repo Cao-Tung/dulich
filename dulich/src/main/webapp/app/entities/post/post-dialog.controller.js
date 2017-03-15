@@ -5,15 +5,17 @@
         .module('dulichApp')
         .controller('PostDialogController', PostDialogController);
 
-    PostDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Post', 'Place'];
+    PostDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Post', 'Place'];
 
-    function PostDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Post, Place) {
+    function PostDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Post, Place) {
         var vm = this;
 
         vm.post = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
+        vm.byteSize = DataUtils.byteSize;
+        vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.places = Place.query();
 
@@ -44,6 +46,20 @@
             vm.isSaving = false;
         }
 
+
+        vm.setAvatar = function ($file, post) {
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        post.avatar = base64Data;
+                        post.avatarContentType = $file.type;
+                    });
+                });
+            }
+        };
         vm.datePickerOpenStatus.createDate = false;
 
         function openCalendar (date) {

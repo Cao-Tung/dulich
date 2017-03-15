@@ -14,7 +14,12 @@
         </dd>
         <dt><span data-translate="dulichApp.tour.avatar">Avatar</span></dt>
         <dd>
-            <span>{{vm.tour.avatar}}</span>
+            <div ng-if="vm.tour.avatar">
+                <a ng-click="vm.openFile(vm.tour.avatarContentType, vm.tour.avatar)">
+                    <img data-ng-src="{{'data:' + vm.tour.avatarContentType + ';base64,' + vm.tour.avatar}}" style="max-width: 100%;" alt="tour image"/>
+                </a>
+                {{vm.tour.avatarContentType}}, {{vm.byteSize(vm.tour.avatar)}}
+            </div>
         </dd>
         <dt><span data-translate="dulichApp.tour.phone">Phone</span></dt>
         <dd>

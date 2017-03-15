@@ -18,6 +18,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -40,8 +41,10 @@ public class RegionResourceIntTest {
     private static final String DEFAULT_NAME_REGION = "AAAAAAAAAA";
     private static final String UPDATED_NAME_REGION = "BBBBBBBBBB";
 
-    private static final String DEFAULT_AVATAR = "AAAAAAAAAA";
-    private static final String UPDATED_AVATAR = "BBBBBBBBBB";
+    private static final byte[] DEFAULT_AVATAR = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_AVATAR = TestUtil.createByteArray(50000000, "1");
+    private static final String DEFAULT_AVATAR_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_AVATAR_CONTENT_TYPE = "image/png";
 
     @Inject
     private RegionRepository regionRepository;
@@ -78,7 +81,8 @@ public class RegionResourceIntTest {
     public static Region createEntity(EntityManager em) {
         Region region = new Region()
                 .nameRegion(DEFAULT_NAME_REGION)
-                .avatar(DEFAULT_AVATAR);
+                .avatar(DEFAULT_AVATAR)
+                .avatarContentType(DEFAULT_AVATAR_CONTENT_TYPE);
         return region;
     }
 
@@ -105,6 +109,7 @@ public class RegionResourceIntTest {
         Region testRegion = regionList.get(regionList.size() - 1);
         assertThat(testRegion.getNameRegion()).isEqualTo(DEFAULT_NAME_REGION);
         assertThat(testRegion.getAvatar()).isEqualTo(DEFAULT_AVATAR);
+        assertThat(testRegion.getAvatarContentType()).isEqualTo(DEFAULT_AVATAR_CONTENT_TYPE);
     }
 
     @Test
@@ -139,7 +144,8 @@ public class RegionResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(region.getId().intValue())))
             .andExpect(jsonPath("$.[*].nameRegion").value(hasItem(DEFAULT_NAME_REGION.toString())))
-            .andExpect(jsonPath("$.[*].avatar").value(hasItem(DEFAULT_AVATAR.toString())));
+            .andExpect(jsonPath("$.[*].avatarContentType").value(hasItem(DEFAULT_AVATAR_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].avatar").value(hasItem(Base64Utils.encodeToString(DEFAULT_AVATAR))));
     }
 
     @Test
@@ -154,7 +160,8 @@ public class RegionResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(region.getId().intValue()))
             .andExpect(jsonPath("$.nameRegion").value(DEFAULT_NAME_REGION.toString()))
-            .andExpect(jsonPath("$.avatar").value(DEFAULT_AVATAR.toString()));
+            .andExpect(jsonPath("$.avatarContentType").value(DEFAULT_AVATAR_CONTENT_TYPE))
+            .andExpect(jsonPath("$.avatar").value(Base64Utils.encodeToString(DEFAULT_AVATAR)));
     }
 
     @Test
@@ -176,7 +183,8 @@ public class RegionResourceIntTest {
         Region updatedRegion = regionRepository.findOne(region.getId());
         updatedRegion
                 .nameRegion(UPDATED_NAME_REGION)
-                .avatar(UPDATED_AVATAR);
+                .avatar(UPDATED_AVATAR)
+                .avatarContentType(UPDATED_AVATAR_CONTENT_TYPE);
 
         restRegionMockMvc.perform(put("/api/regions")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -189,6 +197,7 @@ public class RegionResourceIntTest {
         Region testRegion = regionList.get(regionList.size() - 1);
         assertThat(testRegion.getNameRegion()).isEqualTo(UPDATED_NAME_REGION);
         assertThat(testRegion.getAvatar()).isEqualTo(UPDATED_AVATAR);
+        assertThat(testRegion.getAvatarContentType()).isEqualTo(UPDATED_AVATAR_CONTENT_TYPE);
     }
 
     @Test

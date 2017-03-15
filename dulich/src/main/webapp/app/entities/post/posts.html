@@ -33,7 +33,12 @@
                     <td><a ui-sref="post-detail({id:post.id})">{{post.id}}</a></td>
                     <td>{{post.title}}</td>
                     <td>{{post.content}}</td>
-                    <td>{{post.avatar}}</td>
+                    <td>
+                        <a ng-if="post.avatar" ng-click="vm.openFile(post.avatarContentType, post.avatar)">
+                            <img data-ng-src="{{'data:' + post.avatarContentType + ';base64,' + post.avatar}}" style="max-height: 30px;" alt="post image"/>
+                        </a>
+                        <span ng-if="post.avatar">{{post.avatarContentType}}, {{vm.byteSize(post.avatar)}}</span>
+                    </td>
                     <td>{{post.createDate | date:'medium'}}</td>
                     <td>{{post.view}}</td>
                     <td>

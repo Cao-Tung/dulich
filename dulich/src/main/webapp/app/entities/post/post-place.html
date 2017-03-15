@@ -54,6 +54,15 @@
 				Hoa thường nở dịp đầu năm, thời điểm này Sapa khá đông đúc nên bạn cần lên kế hoạch trước khi lên đường.
 			</p>
 		</div>
+		<input type="file" fileread="uploadme" />
+    <img src="{{uploadme}}" width="100" height="50" alt="Image preview...">
+    <br/>
+    <p>
+      Image dataURI:
+      <pre>{{uploadme}}</pre>
+    </p>
+    <br/>
+    <button ng-click="uploadImage()">upload image</button>
 	</div>
 	<div class="four wide column">
 		<div class="row well ui raised segment">

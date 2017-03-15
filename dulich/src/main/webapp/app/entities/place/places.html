@@ -31,7 +31,12 @@
                 <tr ng-repeat="place in vm.places track by place.id">
                     <td><a ui-sref="place-detail({id:place.id})">{{place.id}}</a></td>
                     <td>{{place.namePlace}}</td>
-                    <td>{{place.avatar}}</td>
+                    <td>
+                        <a ng-if="place.avatar" ng-click="vm.openFile(place.avatarContentType, place.avatar)">
+                            <img data-ng-src="{{'data:' + place.avatarContentType + ';base64,' + place.avatar}}" style="max-height: 30px;" alt="place image"/>
+                        </a>
+                        <span ng-if="place.avatar">{{place.avatarContentType}}, {{vm.byteSize(place.avatar)}}</span>
+                    </td>
                     <td>{{place.content}}</td>
                     <td>
                         <span ng-repeat="tour in place.tours">

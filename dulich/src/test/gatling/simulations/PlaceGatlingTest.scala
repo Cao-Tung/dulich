@@ -67,7 +67,7 @@ class PlaceGatlingTest extends Simulation {
             .exec(http("Create new place")
             .post("/api/places")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "namePlace":"SAMPLE_TEXT", "avatar":"SAMPLE_TEXT", "content":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "namePlace":"SAMPLE_TEXT", "avatar":null, "content":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_place_url"))).exitHereIfFailed
             .pause(10)

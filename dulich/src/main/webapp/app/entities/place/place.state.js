@@ -31,35 +31,6 @@
                 }]
             }
         })
-        .state('place-place', {
-            parent: 'app',
-            url: '/place-place',
-            data: {
-                authorities: []
-            },
-            views: {
-                'content@': {
-                    templateUrl: 'app/entities/place/place-place.html',
-                    controller: 'PlacePlaceController',
-                    controllerAs: 'vm'
-                }
-            },
-            resolve: {
-                posts: ['Post', function(Post) {
-                    return Post.query().$promise;
-                }],
-                tours: ['Tour', function(Tour) {
-                    return Tour.query().$promise;
-                }],
-                hotels: ['Hotel', function(Hotel) {
-                    return Hotel.query().$promise;
-                }],
-                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
-                    $translatePartialLoader.addPart('home');
-                    return $translate.refresh();
-                }]
-            }
-        })
         .state('place-detail', {
             parent: 'entity',
             url: '/place/{id}',
@@ -89,6 +60,35 @@
                         url: $state.href($state.current.name, $state.params)
                     };
                     return currentStateData;
+                }]
+            }
+        })
+        .state('place-place', {
+            parent: 'app',
+            url: '/place-place',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/place/place-place.html',
+                    controller: 'PlacePlaceController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                posts: ['Post', function(Post) {
+                    return Post.query().$promise;
+                }],
+                tours: ['Tour', function(Tour) {
+                    return Tour.query().$promise;
+                }],
+                hotels: ['Hotel', function(Hotel) {
+                    return Hotel.query().$promise;
+                }],
+                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('home');
+                    return $translate.refresh();
                 }]
             }
         })
@@ -135,6 +135,7 @@
                             return {
                                 namePlace: null,
                                 avatar: null,
+                                avatarContentType: null,
                                 content: null,
                                 id: null
                             };

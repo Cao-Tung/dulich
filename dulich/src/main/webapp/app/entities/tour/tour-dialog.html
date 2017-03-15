@@ -25,11 +25,33 @@
                     ng-model="vm.tour.linkCompany"
                      />
         </div>
-        <div class="form-group">
+        <div class="form-group" ngf-drop ngf-change="vm.setAvatar($file, vm.tour)" ngf-pattern="'image/*'">
             <label class="control-label" data-translate="dulichApp.tour.avatar" for="field_avatar">Avatar</label>
-            <input type="text" class="form-control" name="avatar" id="field_avatar"
+            <div>
+                <img data-ng-src="{{'data:' + vm.tour.avatarContentType + ';base64,' + vm.tour.avatar}}" style="max-height: 100px;" ng-if="vm.tour.avatar" alt="tour image"/>
+                <div ng-if="vm.tour.avatar" class="help-block clearfix">
+                    <span class="pull-left">{{vm.tour.avatarContentType}}, {{vm.byteSize(vm.tour.avatar)}}</span>
+                    <button type="button" ng-click="vm.tour.avatar=null;vm.tour.avatarContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAvatar($file, vm.tour)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="avatar" id="field_avatar"
                     ng-model="vm.tour.avatar"
-                     />
+                    maxbytes="50000000" />
+            <input type="hidden" class="form-control" name="avatarContentType" id="field_avatarContentType"
+                    ng-model="vm.tour.avatarContentType" />
+            <div ng-show="editForm.avatar.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.avatar.$error.maxbytes" data-translate="entity.validation.maxbytes" translate-value-max="50000000">
+                    This field cannot be more than 50000000.
+                </p>
+            </div>
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="dulichApp.tour.phone" for="field_phone">Phone</label>

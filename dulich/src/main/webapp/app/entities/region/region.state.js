@@ -106,6 +106,7 @@
                             return {
                                 nameRegion: null,
                                 avatar: null,
+                                avatarContentType: null,
                                 id: null
                             };
                         }

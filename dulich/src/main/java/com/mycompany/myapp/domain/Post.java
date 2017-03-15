@@ -31,8 +31,13 @@ public class Post implements Serializable {
     @Column(name = "content", length = 10000, nullable = false)
     private String content;
 
+    @Size(max = 50000000)
+    @Lob
     @Column(name = "avatar")
-    private String avatar;
+    private byte[] avatar;
+
+    @Column(name = "avatar_content_type")
+    private String avatarContentType;
 
     @Column(name = "create_date")
     private ZonedDateTime createDate;
@@ -77,17 +82,30 @@ public class Post implements Serializable {
         this.content = content;
     }
 
-    public String getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
     }
 
-    public Post avatar(String avatar) {
+    public Post avatar(byte[] avatar) {
         this.avatar = avatar;
         return this;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    public String getAvatarContentType() {
+        return avatarContentType;
+    }
+
+    public Post avatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
+        return this;
+    }
+
+    public void setAvatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
     }
 
     public ZonedDateTime getCreateDate() {
@@ -156,6 +174,7 @@ public class Post implements Serializable {
             ", title='" + title + "'" +
             ", content='" + content + "'" +
             ", avatar='" + avatar + "'" +
+            ", avatarContentType='" + avatarContentType + "'" +
             ", createDate='" + createDate + "'" +
             ", view='" + view + "'" +
             '}';

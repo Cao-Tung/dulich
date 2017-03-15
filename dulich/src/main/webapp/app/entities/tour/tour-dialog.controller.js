@@ -5,13 +5,15 @@
         .module('dulichApp')
         .controller('TourDialogController', TourDialogController);
 
-    TourDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Tour', 'Hotel', 'Place'];
+    TourDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Tour', 'Hotel', 'Place'];
 
-    function TourDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Tour, Hotel, Place) {
+    function TourDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Tour, Hotel, Place) {
         var vm = this;
 
         vm.tour = entity;
         vm.clear = clear;
+        vm.byteSize = DataUtils.byteSize;
+        vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.hotels = Hotel.query();
         vm.places = Place.query();
@@ -43,6 +45,20 @@
             vm.isSaving = false;
         }
 
+
+        vm.setAvatar = function ($file, tour) {
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        tour.avatar = base64Data;
+                        tour.avatarContentType = $file.type;
+                    });
+                });
+            }
+        };
 
     }
 })();

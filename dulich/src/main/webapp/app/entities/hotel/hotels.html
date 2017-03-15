@@ -31,7 +31,12 @@
                 <tr ng-repeat="hotel in vm.hotels track by hotel.id">
                     <td><a ui-sref="hotel-detail({id:hotel.id})">{{hotel.id}}</a></td>
                     <td>{{hotel.nameHotel}}</td>
-                    <td>{{hotel.avatar}}</td>
+                    <td>
+                        <a ng-if="hotel.avatar" ng-click="vm.openFile(hotel.avatarContentType, hotel.avatar)">
+                            <img data-ng-src="{{'data:' + hotel.avatarContentType + ';base64,' + hotel.avatar}}" style="max-height: 30px;" alt="hotel image"/>
+                        </a>
+                        <span ng-if="hotel.avatar">{{hotel.avatarContentType}}, {{vm.byteSize(hotel.avatar)}}</span>
+                    </td>
                     <td>{{hotel.link}}</td>
                     <td>{{hotel.price}}</td>
                     <td>

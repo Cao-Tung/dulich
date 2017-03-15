@@ -31,8 +31,13 @@ public class Tour implements Serializable {
     @Column(name = "link_company")
     private String linkCompany;
 
+    @Size(max = 50000000)
+    @Lob
     @Column(name = "avatar")
-    private String avatar;
+    private byte[] avatar;
+
+    @Column(name = "avatar_content_type")
+    private String avatarContentType;
 
     @Column(name = "phone")
     private String phone;
@@ -94,17 +99,30 @@ public class Tour implements Serializable {
         this.linkCompany = linkCompany;
     }
 
-    public String getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
     }
 
-    public Tour avatar(String avatar) {
+    public Tour avatar(byte[] avatar) {
         this.avatar = avatar;
         return this;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    public String getAvatarContentType() {
+        return avatarContentType;
+    }
+
+    public Tour avatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
+        return this;
+    }
+
+    public void setAvatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
     }
 
     public String getPhone() {
@@ -236,6 +254,7 @@ public class Tour implements Serializable {
             ", nameCompany='" + nameCompany + "'" +
             ", linkCompany='" + linkCompany + "'" +
             ", avatar='" + avatar + "'" +
+            ", avatarContentType='" + avatarContentType + "'" +
             ", phone='" + phone + "'" +
             ", serviceTour='" + serviceTour + "'" +
             ", price='" + price + "'" +

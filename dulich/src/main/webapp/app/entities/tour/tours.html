@@ -35,7 +35,12 @@
                     <td><a ui-sref="tour-detail({id:tour.id})">{{tour.id}}</a></td>
                     <td>{{tour.nameCompany}}</td>
                     <td>{{tour.linkCompany}}</td>
-                    <td>{{tour.avatar}}</td>
+                    <td>
+                        <a ng-if="tour.avatar" ng-click="vm.openFile(tour.avatarContentType, tour.avatar)">
+                            <img data-ng-src="{{'data:' + tour.avatarContentType + ';base64,' + tour.avatar}}" style="max-height: 30px;" alt="tour image"/>
+                        </a>
+                        <span ng-if="tour.avatar">{{tour.avatarContentType}}, {{vm.byteSize(tour.avatar)}}</span>
+                    </td>
                     <td>{{tour.phone}}</td>
                     <td>{{tour.serviceTour}}</td>
                     <td>{{tour.price}}</td>

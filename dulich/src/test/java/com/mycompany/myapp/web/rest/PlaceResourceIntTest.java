@@ -18,6 +18,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -40,8 +41,10 @@ public class PlaceResourceIntTest {
     private static final String DEFAULT_NAME_PLACE = "AAAAAAAAAA";
     private static final String UPDATED_NAME_PLACE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_AVATAR = "AAAAAAAAAA";
-    private static final String UPDATED_AVATAR = "BBBBBBBBBB";
+    private static final byte[] DEFAULT_AVATAR = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_AVATAR = TestUtil.createByteArray(50000000, "1");
+    private static final String DEFAULT_AVATAR_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_AVATAR_CONTENT_TYPE = "image/png";
 
     private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
     private static final String UPDATED_CONTENT = "BBBBBBBBBB";
@@ -82,6 +85,7 @@ public class PlaceResourceIntTest {
         Place place = new Place()
                 .namePlace(DEFAULT_NAME_PLACE)
                 .avatar(DEFAULT_AVATAR)
+                .avatarContentType(DEFAULT_AVATAR_CONTENT_TYPE)
                 .content(DEFAULT_CONTENT);
         return place;
     }
@@ -109,6 +113,7 @@ public class PlaceResourceIntTest {
         Place testPlace = placeList.get(placeList.size() - 1);
         assertThat(testPlace.getNamePlace()).isEqualTo(DEFAULT_NAME_PLACE);
         assertThat(testPlace.getAvatar()).isEqualTo(DEFAULT_AVATAR);
+        assertThat(testPlace.getAvatarContentType()).isEqualTo(DEFAULT_AVATAR_CONTENT_TYPE);
         assertThat(testPlace.getContent()).isEqualTo(DEFAULT_CONTENT);
     }
 
@@ -162,7 +167,8 @@ public class PlaceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(place.getId().intValue())))
             .andExpect(jsonPath("$.[*].namePlace").value(hasItem(DEFAULT_NAME_PLACE.toString())))
-            .andExpect(jsonPath("$.[*].avatar").value(hasItem(DEFAULT_AVATAR.toString())))
+            .andExpect(jsonPath("$.[*].avatarContentType").value(hasItem(DEFAULT_AVATAR_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].avatar").value(hasItem(Base64Utils.encodeToString(DEFAULT_AVATAR))))
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())));
     }
 
@@ -178,7 +184,8 @@ public class PlaceResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(place.getId().intValue()))
             .andExpect(jsonPath("$.namePlace").value(DEFAULT_NAME_PLACE.toString()))
-            .andExpect(jsonPath("$.avatar").value(DEFAULT_AVATAR.toString()))
+            .andExpect(jsonPath("$.avatarContentType").value(DEFAULT_AVATAR_CONTENT_TYPE))
+            .andExpect(jsonPath("$.avatar").value(Base64Utils.encodeToString(DEFAULT_AVATAR)))
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()));
     }
 
@@ -202,6 +209,7 @@ public class PlaceResourceIntTest {
         updatedPlace
                 .namePlace(UPDATED_NAME_PLACE)
                 .avatar(UPDATED_AVATAR)
+                .avatarContentType(UPDATED_AVATAR_CONTENT_TYPE)
                 .content(UPDATED_CONTENT);
 
         restPlaceMockMvc.perform(put("/api/places")
@@ -215,6 +223,7 @@ public class PlaceResourceIntTest {
         Place testPlace = placeList.get(placeList.size() - 1);
         assertThat(testPlace.getNamePlace()).isEqualTo(UPDATED_NAME_PLACE);
         assertThat(testPlace.getAvatar()).isEqualTo(UPDATED_AVATAR);
+        assertThat(testPlace.getAvatarContentType()).isEqualTo(UPDATED_AVATAR_CONTENT_TYPE);
         assertThat(testPlace.getContent()).isEqualTo(UPDATED_CONTENT);
     }
 

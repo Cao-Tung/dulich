@@ -28,8 +28,13 @@ public class Place implements Serializable {
     @Column(name = "name_place")
     private String namePlace;
 
+    @Size(max = 50000000)
+    @Lob
     @Column(name = "avatar")
-    private String avatar;
+    private byte[] avatar;
+
+    @Column(name = "avatar_content_type")
+    private String avatarContentType;
 
     @NotNull
     @Size(max = 10000)
@@ -77,17 +82,30 @@ public class Place implements Serializable {
         this.namePlace = namePlace;
     }
 
-    public String getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
     }
 
-    public Place avatar(String avatar) {
+    public Place avatar(byte[] avatar) {
         this.avatar = avatar;
         return this;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    public String getAvatarContentType() {
+        return avatarContentType;
+    }
+
+    public Place avatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
+        return this;
+    }
+
+    public void setAvatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
     }
 
     public String getContent() {
@@ -217,6 +235,7 @@ public class Place implements Serializable {
             "id=" + id +
             ", namePlace='" + namePlace + "'" +
             ", avatar='" + avatar + "'" +
+            ", avatarContentType='" + avatarContentType + "'" +
             ", content='" + content + "'" +
             '}';
     }

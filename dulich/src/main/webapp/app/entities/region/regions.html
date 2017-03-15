@@ -28,7 +28,12 @@
                 <tr ng-repeat="region in vm.regions track by region.id">
                     <td><a ui-sref="region-detail({id:region.id})">{{region.id}}</a></td>
                     <td>{{region.nameRegion}}</td>
-                    <td>{{region.avatar}}</td>
+                    <td>
+                        <a ng-if="region.avatar" ng-click="vm.openFile(region.avatarContentType, region.avatar)">
+                            <img data-ng-src="{{'data:' + region.avatarContentType + ';base64,' + region.avatar}}" style="max-height: 30px;" alt="region image"/>
+                        </a>
+                        <span ng-if="region.avatar">{{region.avatarContentType}}, {{vm.byteSize(region.avatar)}}</span>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

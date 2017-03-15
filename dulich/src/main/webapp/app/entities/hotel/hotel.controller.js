@@ -5,12 +5,14 @@
         .module('dulichApp')
         .controller('HotelController', HotelController);
 
-    HotelController.$inject = ['$scope', '$state', 'Hotel'];
+    HotelController.$inject = ['$scope', '$state', 'DataUtils', 'Hotel'];
 
-    function HotelController ($scope, $state, Hotel) {
+    function HotelController ($scope, $state, DataUtils, Hotel) {
         var vm = this;
 
         vm.hotels = [];
+        vm.openFile = DataUtils.openFile;
+        vm.byteSize = DataUtils.byteSize;
 
         loadAll();
 

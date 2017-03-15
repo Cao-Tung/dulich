@@ -67,7 +67,7 @@ class TourGatlingTest extends Simulation {
             .exec(http("Create new tour")
             .post("/api/tours")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nameCompany":"SAMPLE_TEXT", "linkCompany":"SAMPLE_TEXT", "avatar":"SAMPLE_TEXT", "phone":"SAMPLE_TEXT", "serviceTour":"SAMPLE_TEXT", "price":"0", "content":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "nameCompany":"SAMPLE_TEXT", "linkCompany":"SAMPLE_TEXT", "avatar":null, "phone":"SAMPLE_TEXT", "serviceTour":"SAMPLE_TEXT", "price":"0", "content":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_tour_url"))).exitHereIfFailed
             .pause(10)

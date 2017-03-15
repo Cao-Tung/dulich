@@ -136,6 +136,7 @@
                                 title: null,
                                 content: null,
                                 avatar: null,
+                                avatarContentType: null,
                                 createDate: null,
                                 view: null,
                                 id: null

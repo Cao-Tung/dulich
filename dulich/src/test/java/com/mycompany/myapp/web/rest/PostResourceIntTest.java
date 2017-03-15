@@ -18,6 +18,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -48,8 +49,10 @@ public class PostResourceIntTest {
     private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
     private static final String UPDATED_CONTENT = "BBBBBBBBBB";
 
-    private static final String DEFAULT_AVATAR = "AAAAAAAAAA";
-    private static final String UPDATED_AVATAR = "BBBBBBBBBB";
+    private static final byte[] DEFAULT_AVATAR = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_AVATAR = TestUtil.createByteArray(50000000, "1");
+    private static final String DEFAULT_AVATAR_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_AVATAR_CONTENT_TYPE = "image/png";
 
     private static final ZonedDateTime DEFAULT_CREATE_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATE_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
@@ -94,6 +97,7 @@ public class PostResourceIntTest {
                 .title(DEFAULT_TITLE)
                 .content(DEFAULT_CONTENT)
                 .avatar(DEFAULT_AVATAR)
+                .avatarContentType(DEFAULT_AVATAR_CONTENT_TYPE)
                 .createDate(DEFAULT_CREATE_DATE)
                 .view(DEFAULT_VIEW);
         return post;
@@ -123,6 +127,7 @@ public class PostResourceIntTest {
         assertThat(testPost.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testPost.getContent()).isEqualTo(DEFAULT_CONTENT);
         assertThat(testPost.getAvatar()).isEqualTo(DEFAULT_AVATAR);
+        assertThat(testPost.getAvatarContentType()).isEqualTo(DEFAULT_AVATAR_CONTENT_TYPE);
         assertThat(testPost.getCreateDate()).isEqualTo(DEFAULT_CREATE_DATE);
         assertThat(testPost.getView()).isEqualTo(DEFAULT_VIEW);
     }
@@ -178,7 +183,8 @@ public class PostResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(post.getId().intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE.toString())))
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
-            .andExpect(jsonPath("$.[*].avatar").value(hasItem(DEFAULT_AVATAR.toString())))
+            .andExpect(jsonPath("$.[*].avatarContentType").value(hasItem(DEFAULT_AVATAR_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].avatar").value(hasItem(Base64Utils.encodeToString(DEFAULT_AVATAR))))
             .andExpect(jsonPath("$.[*].createDate").value(hasItem(sameInstant(DEFAULT_CREATE_DATE))))
             .andExpect(jsonPath("$.[*].view").value(hasItem(DEFAULT_VIEW)));
     }
@@ -196,7 +202,8 @@ public class PostResourceIntTest {
             .andExpect(jsonPath("$.id").value(post.getId().intValue()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE.toString()))
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
-            .andExpect(jsonPath("$.avatar").value(DEFAULT_AVATAR.toString()))
+            .andExpect(jsonPath("$.avatarContentType").value(DEFAULT_AVATAR_CONTENT_TYPE))
+            .andExpect(jsonPath("$.avatar").value(Base64Utils.encodeToString(DEFAULT_AVATAR)))
             .andExpect(jsonPath("$.createDate").value(sameInstant(DEFAULT_CREATE_DATE)))
             .andExpect(jsonPath("$.view").value(DEFAULT_VIEW));
     }
@@ -222,6 +229,7 @@ public class PostResourceIntTest {
                 .title(UPDATED_TITLE)
                 .content(UPDATED_CONTENT)
                 .avatar(UPDATED_AVATAR)
+                .avatarContentType(UPDATED_AVATAR_CONTENT_TYPE)
                 .createDate(UPDATED_CREATE_DATE)
                 .view(UPDATED_VIEW);
 
@@ -237,6 +245,7 @@ public class PostResourceIntTest {
         assertThat(testPost.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testPost.getContent()).isEqualTo(UPDATED_CONTENT);
         assertThat(testPost.getAvatar()).isEqualTo(UPDATED_AVATAR);
+        assertThat(testPost.getAvatarContentType()).isEqualTo(UPDATED_AVATAR_CONTENT_TYPE);
         assertThat(testPost.getCreateDate()).isEqualTo(UPDATED_CREATE_DATE);
         assertThat(testPost.getView()).isEqualTo(UPDATED_VIEW);
     }

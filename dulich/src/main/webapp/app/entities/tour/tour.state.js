@@ -107,6 +107,7 @@
                                 nameCompany: null,
                                 linkCompany: null,
                                 avatar: null,
+                                avatarContentType: null,
                                 phone: null,
                                 serviceTour: null,
                                 price: null,

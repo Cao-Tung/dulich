@@ -18,6 +18,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -43,8 +44,10 @@ public class TourResourceIntTest {
     private static final String DEFAULT_LINK_COMPANY = "AAAAAAAAAA";
     private static final String UPDATED_LINK_COMPANY = "BBBBBBBBBB";
 
-    private static final String DEFAULT_AVATAR = "AAAAAAAAAA";
-    private static final String UPDATED_AVATAR = "BBBBBBBBBB";
+    private static final byte[] DEFAULT_AVATAR = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_AVATAR = TestUtil.createByteArray(50000000, "1");
+    private static final String DEFAULT_AVATAR_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_AVATAR_CONTENT_TYPE = "image/png";
 
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";
@@ -95,6 +98,7 @@ public class TourResourceIntTest {
                 .nameCompany(DEFAULT_NAME_COMPANY)
                 .linkCompany(DEFAULT_LINK_COMPANY)
                 .avatar(DEFAULT_AVATAR)
+                .avatarContentType(DEFAULT_AVATAR_CONTENT_TYPE)
                 .phone(DEFAULT_PHONE)
                 .serviceTour(DEFAULT_SERVICE_TOUR)
                 .price(DEFAULT_PRICE)
@@ -126,6 +130,7 @@ public class TourResourceIntTest {
         assertThat(testTour.getNameCompany()).isEqualTo(DEFAULT_NAME_COMPANY);
         assertThat(testTour.getLinkCompany()).isEqualTo(DEFAULT_LINK_COMPANY);
         assertThat(testTour.getAvatar()).isEqualTo(DEFAULT_AVATAR);
+        assertThat(testTour.getAvatarContentType()).isEqualTo(DEFAULT_AVATAR_CONTENT_TYPE);
         assertThat(testTour.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testTour.getServiceTour()).isEqualTo(DEFAULT_SERVICE_TOUR);
         assertThat(testTour.getPrice()).isEqualTo(DEFAULT_PRICE);
@@ -183,7 +188,8 @@ public class TourResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(tour.getId().intValue())))
             .andExpect(jsonPath("$.[*].nameCompany").value(hasItem(DEFAULT_NAME_COMPANY.toString())))
             .andExpect(jsonPath("$.[*].linkCompany").value(hasItem(DEFAULT_LINK_COMPANY.toString())))
-            .andExpect(jsonPath("$.[*].avatar").value(hasItem(DEFAULT_AVATAR.toString())))
+            .andExpect(jsonPath("$.[*].avatarContentType").value(hasItem(DEFAULT_AVATAR_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].avatar").value(hasItem(Base64Utils.encodeToString(DEFAULT_AVATAR))))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
             .andExpect(jsonPath("$.[*].serviceTour").value(hasItem(DEFAULT_SERVICE_TOUR.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)))
@@ -203,7 +209,8 @@ public class TourResourceIntTest {
             .andExpect(jsonPath("$.id").value(tour.getId().intValue()))
             .andExpect(jsonPath("$.nameCompany").value(DEFAULT_NAME_COMPANY.toString()))
             .andExpect(jsonPath("$.linkCompany").value(DEFAULT_LINK_COMPANY.toString()))
-            .andExpect(jsonPath("$.avatar").value(DEFAULT_AVATAR.toString()))
+            .andExpect(jsonPath("$.avatarContentType").value(DEFAULT_AVATAR_CONTENT_TYPE))
+            .andExpect(jsonPath("$.avatar").value(Base64Utils.encodeToString(DEFAULT_AVATAR)))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
             .andExpect(jsonPath("$.serviceTour").value(DEFAULT_SERVICE_TOUR.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE))
@@ -231,6 +238,7 @@ public class TourResourceIntTest {
                 .nameCompany(UPDATED_NAME_COMPANY)
                 .linkCompany(UPDATED_LINK_COMPANY)
                 .avatar(UPDATED_AVATAR)
+                .avatarContentType(UPDATED_AVATAR_CONTENT_TYPE)
                 .phone(UPDATED_PHONE)
                 .serviceTour(UPDATED_SERVICE_TOUR)
                 .price(UPDATED_PRICE)
@@ -248,6 +256,7 @@ public class TourResourceIntTest {
         assertThat(testTour.getNameCompany()).isEqualTo(UPDATED_NAME_COMPANY);
         assertThat(testTour.getLinkCompany()).isEqualTo(UPDATED_LINK_COMPANY);
         assertThat(testTour.getAvatar()).isEqualTo(UPDATED_AVATAR);
+        assertThat(testTour.getAvatarContentType()).isEqualTo(UPDATED_AVATAR_CONTENT_TYPE);
         assertThat(testTour.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testTour.getServiceTour()).isEqualTo(UPDATED_SERVICE_TOUR);
         assertThat(testTour.getPrice()).isEqualTo(UPDATED_PRICE);

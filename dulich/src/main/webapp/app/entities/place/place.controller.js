@@ -5,12 +5,14 @@
         .module('dulichApp')
         .controller('PlaceController', PlaceController);
 
-    PlaceController.$inject = ['$scope', '$state', 'Place'];
+    PlaceController.$inject = ['$scope', '$state', 'DataUtils', 'Place'];
 
-    function PlaceController ($scope, $state, Place) {
+    function PlaceController ($scope, $state, DataUtils, Place) {
         var vm = this;
 
         vm.places = [];
+        vm.openFile = DataUtils.openFile;
+        vm.byteSize = DataUtils.byteSize;
 
         loadAll();
 

@@ -5,12 +5,14 @@
         .module('dulichApp')
         .controller('PostController', PostController);
 
-    PostController.$inject = ['$scope', '$state', 'Post'];
+    PostController.$inject = ['$scope', '$state', 'DataUtils', 'Post'];
 
-    function PostController ($scope, $state, Post) {
+    function PostController ($scope, $state, DataUtils, Post) {
         var vm = this;
 
         vm.posts = [];
+        vm.openFile = DataUtils.openFile;
+        vm.byteSize = DataUtils.byteSize;
 
         loadAll();
 

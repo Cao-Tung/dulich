@@ -10,7 +10,12 @@
         </dd>
         <dt><span data-translate="dulichApp.hotel.avatar">Avatar</span></dt>
         <dd>
-            <span>{{vm.hotel.avatar}}</span>
+            <div ng-if="vm.hotel.avatar">
+                <a ng-click="vm.openFile(vm.hotel.avatarContentType, vm.hotel.avatar)">
+                    <img data-ng-src="{{'data:' + vm.hotel.avatarContentType + ';base64,' + vm.hotel.avatar}}" style="max-width: 100%;" alt="hotel image"/>
+                </a>
+                {{vm.hotel.avatarContentType}}, {{vm.byteSize(vm.hotel.avatar)}}
+            </div>
         </dd>
         <dt><span data-translate="dulichApp.hotel.link">Link</span></dt>
         <dd>

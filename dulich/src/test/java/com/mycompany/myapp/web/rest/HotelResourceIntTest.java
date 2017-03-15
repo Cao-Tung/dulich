@@ -18,6 +18,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -40,8 +41,10 @@ public class HotelResourceIntTest {
     private static final String DEFAULT_NAME_HOTEL = "AAAAAAAAAA";
     private static final String UPDATED_NAME_HOTEL = "BBBBBBBBBB";
 
-    private static final String DEFAULT_AVATAR = "AAAAAAAAAA";
-    private static final String UPDATED_AVATAR = "BBBBBBBBBB";
+    private static final byte[] DEFAULT_AVATAR = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_AVATAR = TestUtil.createByteArray(50000000, "1");
+    private static final String DEFAULT_AVATAR_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_AVATAR_CONTENT_TYPE = "image/png";
 
     private static final String DEFAULT_LINK = "AAAAAAAAAA";
     private static final String UPDATED_LINK = "BBBBBBBBBB";
@@ -85,6 +88,7 @@ public class HotelResourceIntTest {
         Hotel hotel = new Hotel()
                 .nameHotel(DEFAULT_NAME_HOTEL)
                 .avatar(DEFAULT_AVATAR)
+                .avatarContentType(DEFAULT_AVATAR_CONTENT_TYPE)
                 .link(DEFAULT_LINK)
                 .price(DEFAULT_PRICE);
         return hotel;
@@ -113,6 +117,7 @@ public class HotelResourceIntTest {
         Hotel testHotel = hotelList.get(hotelList.size() - 1);
         assertThat(testHotel.getNameHotel()).isEqualTo(DEFAULT_NAME_HOTEL);
         assertThat(testHotel.getAvatar()).isEqualTo(DEFAULT_AVATAR);
+        assertThat(testHotel.getAvatarContentType()).isEqualTo(DEFAULT_AVATAR_CONTENT_TYPE);
         assertThat(testHotel.getLink()).isEqualTo(DEFAULT_LINK);
         assertThat(testHotel.getPrice()).isEqualTo(DEFAULT_PRICE);
     }
@@ -149,7 +154,8 @@ public class HotelResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(hotel.getId().intValue())))
             .andExpect(jsonPath("$.[*].nameHotel").value(hasItem(DEFAULT_NAME_HOTEL.toString())))
-            .andExpect(jsonPath("$.[*].avatar").value(hasItem(DEFAULT_AVATAR.toString())))
+            .andExpect(jsonPath("$.[*].avatarContentType").value(hasItem(DEFAULT_AVATAR_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].avatar").value(hasItem(Base64Utils.encodeToString(DEFAULT_AVATAR))))
             .andExpect(jsonPath("$.[*].link").value(hasItem(DEFAULT_LINK.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)));
     }
@@ -166,7 +172,8 @@ public class HotelResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(hotel.getId().intValue()))
             .andExpect(jsonPath("$.nameHotel").value(DEFAULT_NAME_HOTEL.toString()))
-            .andExpect(jsonPath("$.avatar").value(DEFAULT_AVATAR.toString()))
+            .andExpect(jsonPath("$.avatarContentType").value(DEFAULT_AVATAR_CONTENT_TYPE))
+            .andExpect(jsonPath("$.avatar").value(Base64Utils.encodeToString(DEFAULT_AVATAR)))
             .andExpect(jsonPath("$.link").value(DEFAULT_LINK.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE));
     }
@@ -191,6 +198,7 @@ public class HotelResourceIntTest {
         updatedHotel
                 .nameHotel(UPDATED_NAME_HOTEL)
                 .avatar(UPDATED_AVATAR)
+                .avatarContentType(UPDATED_AVATAR_CONTENT_TYPE)
                 .link(UPDATED_LINK)
                 .price(UPDATED_PRICE);
 
@@ -205,6 +213,7 @@ public class HotelResourceIntTest {
         Hotel testHotel = hotelList.get(hotelList.size() - 1);
         assertThat(testHotel.getNameHotel()).isEqualTo(UPDATED_NAME_HOTEL);
         assertThat(testHotel.getAvatar()).isEqualTo(UPDATED_AVATAR);
+        assertThat(testHotel.getAvatarContentType()).isEqualTo(UPDATED_AVATAR_CONTENT_TYPE);
         assertThat(testHotel.getLink()).isEqualTo(UPDATED_LINK);
         assertThat(testHotel.getPrice()).isEqualTo(UPDATED_PRICE);
     }

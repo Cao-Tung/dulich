@@ -5,13 +5,15 @@
         .module('dulichApp')
         .controller('RegionDialogController', RegionDialogController);
 
-    RegionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Region', 'Place'];
+    RegionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Region', 'Place'];
 
-    function RegionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Region, Place) {
+    function RegionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Region, Place) {
         var vm = this;
 
         vm.region = entity;
         vm.clear = clear;
+        vm.byteSize = DataUtils.byteSize;
+        vm.openFile = DataUtils.openFile;
         vm.save = save;
         vm.places = Place.query();
 
@@ -42,6 +44,20 @@
             vm.isSaving = false;
         }
 
+
+        vm.setAvatar = function ($file, region) {
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        region.avatar = base64Data;
+                        region.avatarContentType = $file.type;
+                    });
+                });
+            }
+        };
 
     }
 })();

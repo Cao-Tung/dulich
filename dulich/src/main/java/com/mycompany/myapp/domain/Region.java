@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,8 +28,13 @@ public class Region implements Serializable {
     @Column(name = "name_region")
     private String nameRegion;
 
+    @Size(max = 50000000)
+    @Lob
     @Column(name = "avatar")
-    private String avatar;
+    private byte[] avatar;
+
+    @Column(name = "avatar_content_type")
+    private String avatarContentType;
 
     @OneToMany(mappedBy = "region")
     @JsonIgnore
@@ -56,17 +62,30 @@ public class Region implements Serializable {
         this.nameRegion = nameRegion;
     }
 
-    public String getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
     }
 
-    public Region avatar(String avatar) {
+    public Region avatar(byte[] avatar) {
         this.avatar = avatar;
         return this;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    public String getAvatarContentType() {
+        return avatarContentType;
+    }
+
+    public Region avatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
+        return this;
+    }
+
+    public void setAvatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
     }
 
     public Set<Place> getPlaces() {
@@ -120,6 +139,7 @@ public class Region implements Serializable {
             "id=" + id +
             ", nameRegion='" + nameRegion + "'" +
             ", avatar='" + avatar + "'" +
+            ", avatarContentType='" + avatarContentType + "'" +
             '}';
     }
 }

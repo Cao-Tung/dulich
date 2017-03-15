@@ -106,6 +106,7 @@
                             return {
                                 nameHotel: null,
                                 avatar: null,
+                                avatarContentType: null,
                                 link: null,
                                 price: null,
                                 id: null

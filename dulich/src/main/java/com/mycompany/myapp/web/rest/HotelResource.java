@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -40,7 +41,7 @@ public class HotelResource {
      */
     @PostMapping("/hotels")
     @Timed
-    public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel) throws URISyntaxException {
+    public ResponseEntity<Hotel> createHotel(@Valid @RequestBody Hotel hotel) throws URISyntaxException {
         log.debug("REST request to save Hotel : {}", hotel);
         if (hotel.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("hotel", "idexists", "A new hotel cannot already have an ID")).body(null);
@@ -62,7 +63,7 @@ public class HotelResource {
      */
     @PutMapping("/hotels")
     @Timed
-    public ResponseEntity<Hotel> updateHotel(@RequestBody Hotel hotel) throws URISyntaxException {
+    public ResponseEntity<Hotel> updateHotel(@Valid @RequestBody Hotel hotel) throws URISyntaxException {
         log.debug("REST request to update Hotel : {}", hotel);
         if (hotel.getId() == null) {
             return createHotel(hotel);
