@@ -11,5 +11,9 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface PostRepository extends JpaRepository<Post,Long> {
+    List<Post> findAllByPlaceIdOrderByCreateDateDesc(Long id);
 
+    List<Post> findAllByPlaceIdOrderByViewDesc(Long id);
+
+    List<Post> findAllByTitleContaining(String title);
 }

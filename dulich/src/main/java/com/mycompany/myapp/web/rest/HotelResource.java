@@ -119,4 +119,18 @@ public class HotelResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("hotel", id.toString())).build();
     }
 
+    /**
+     * GET /hotels/place/:id : get all the hotels by place.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of hotels in
+     *         body
+     */
+    @GetMapping("/hotels/place/{id}")
+    @Timed
+    public List<Hotel> getAllHotelByPlace(@PathVariable Long id) {
+        log.debug("REST request to get a page of Hotels");
+        List<Hotel> hotels = hotelRepository.findAllByPlaceId(id);
+        return hotels;
+    }
+
 }

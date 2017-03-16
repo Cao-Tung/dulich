@@ -119,4 +119,18 @@ public class TourResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("tour", id.toString())).build();
     }
 
+    /**
+     * GET /tours/place/:id : get all the tour of place.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of tours in
+     *         body
+     */
+    @GetMapping("/tours/place/{id}")
+    @Timed
+    public List<Tour> getAllTourByPlace(@PathVariable Long id) {
+        log.debug("REST request to get a page of Tours");
+        List<Tour> tours = tourRepository.findAllByPlacesIdIn(id);
+        return tours;
+    }
+
 }

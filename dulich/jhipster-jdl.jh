@@ -61,6 +61,10 @@ relationship ManyToMany {
 	Tour{hotel} to Hotel{tour}
 }
 
+relationship ManyToMany {
+	Place{tour} to Tour{place}
+}
+
 
 
 

@@ -13,6 +13,8 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface TourRepository extends JpaRepository<Tour,Long> {
 
+    List<Tour> findAllByPlacesIdIn(Long id);
+
     @Query("select distinct tour from Tour tour left join fetch tour.hotels")
     List<Tour> findAllWithEagerRelationships();
 

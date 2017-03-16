@@ -119,4 +119,46 @@ public class PostResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("post", id.toString())).build();
     }
 
+    /**
+     * GET /posts/place/:id : get all the posts of place.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of posts in
+     *         body
+     */
+    @GetMapping("/posts/place/{id}")
+    @Timed
+    public List<Post> getAllPostByPlace(@PathVariable Long id) {
+        log.debug("REST request to get a page of Posts");
+        List<Post> posts = postRepository.findAllByPlaceIdOrderByCreateDateDesc(id);
+        return posts;
+    }
+
+    /**
+     * GET /posts/view/place/{id} : get all the posts order by view.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of posts in
+     *         body
+     */
+    @GetMapping("/posts/view/place/{id}")
+    @Timed
+    public List<Post> getAllPostByPlaceOrderByView(@PathVariable Long id) {
+        log.debug("REST request to get a page of Posts");
+        List<Post> posts = postRepository.findAllByPlaceIdOrderByViewDesc(id);
+        return posts;
+    }
+
+
+    /**
+     * GET /posts/title/{title} : get all the posts by title.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of posts in
+     *         body
+     */
+    @GetMapping("/posts/title/{title}")
+    @Timed
+    public List<Post> getAllPostByTitle(@PathVariable String title) {
+        log.debug("REST request to get a page of Posts");
+        List<Post> posts = postRepository.findAllByTitleContaining(title);
+        return posts;
+    }
 }

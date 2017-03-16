@@ -11,5 +11,5 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface HotelRepository extends JpaRepository<Hotel,Long> {
-
+    List<Hotel> findAllByPlaceId(Long id);
 }
