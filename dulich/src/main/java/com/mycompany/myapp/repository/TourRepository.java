@@ -12,13 +12,12 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface TourRepository extends JpaRepository<Tour,Long> {
+    List<Tour> findAllByPlacesId(Long id);
 
-    List<Tour> findAllByPlacesIdIn(Long id);
-
-    @Query("select distinct tour from Tour tour left join fetch tour.hotels")
+    @Query("select distinct tour from Tour tour left join fetch tour.places left join fetch tour.hotels")
     List<Tour> findAllWithEagerRelationships();
 
-    @Query("select tour from Tour tour left join fetch tour.hotels where tour.id =:id")
+    @Query("select tour from Tour tour left join fetch tour.places left join fetch tour.hotels where tour.id =:id")
     Tour findOneWithEagerRelationships(@Param("id") Long id);
 
 }

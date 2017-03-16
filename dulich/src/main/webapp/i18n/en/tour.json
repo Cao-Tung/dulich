@@ -23,8 +23,8 @@
             "serviceTour": "Service Tour",
             "price": "Price",
             "content": "Content",
-            "hotel": "Hotel",
-            "place": "Place"
+            "place": "Place",
+            "hotel": "Hotel"
         }
     }
 }

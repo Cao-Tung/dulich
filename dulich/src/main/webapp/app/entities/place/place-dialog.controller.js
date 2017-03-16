@@ -5,9 +5,9 @@
         .module('dulichApp')
         .controller('PlaceDialogController', PlaceDialogController);
 
-    PlaceDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Place', 'Post', 'Hotel', 'Tour', 'Region'];
+    PlaceDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Place', 'Post', 'Hotel', 'Region', 'Tour'];
 
-    function PlaceDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Place, Post, Hotel, Tour, Region) {
+    function PlaceDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Place, Post, Hotel, Region, Tour) {
         var vm = this;
 
         vm.place = entity;
@@ -17,8 +17,8 @@
         vm.save = save;
         vm.posts = Post.query();
         vm.hotels = Hotel.query();
-        vm.tours = Tour.query();
         vm.regions = Region.query();
+        vm.tours = Tour.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

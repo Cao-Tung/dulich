@@ -8,17 +8,6 @@
     -->
     <changeSet id="20170228171654-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="places_id"
-                                 baseTableName="place_tour"
-                                 constraintName="fk_place_tour_places_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="place"/>
-        <addForeignKeyConstraint baseColumnNames="tours_id"
-                                 baseTableName="place_tour"
-                                 constraintName="fk_place_tour_tours_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="tour"/>
-        
         <addForeignKeyConstraint baseColumnNames="region_id"
                                  baseTableName="place"
                                  constraintName="fk_place_region_id"

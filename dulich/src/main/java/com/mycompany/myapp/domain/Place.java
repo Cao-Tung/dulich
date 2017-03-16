@@ -51,15 +51,13 @@ public class Place implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Hotel> hotels = new HashSet<>();
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "place_tour",
-               joinColumns = @JoinColumn(name="places_id", referencedColumnName="ID"),
-               inverseJoinColumns = @JoinColumn(name="tours_id", referencedColumnName="ID"))
-    private Set<Tour> tours = new HashSet<>();
-
     @ManyToOne
     private Region region;
+
+    @ManyToMany(mappedBy = "places")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Tour> tours = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -171,6 +169,19 @@ public class Place implements Serializable {
         this.hotels = hotels;
     }
 
+    public Region getRegion() {
+        return region;
+    }
+
+    public Place region(Region region) {
+        this.region = region;
+        return this;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
     public Set<Tour> getTours() {
         return tours;
     }
@@ -194,19 +205,6 @@ public class Place implements Serializable {
 
     public void setTours(Set<Tour> tours) {
         this.tours = tours;
-    }
-
-    public Region getRegion() {
-        return region;
-    }
-
-    public Place region(Region region) {
-        this.region = region;
-        return this;
-    }
-
-    public void setRegion(Region region) {
-        this.region = region;
     }
 
     @Override

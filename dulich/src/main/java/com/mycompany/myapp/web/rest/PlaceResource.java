@@ -83,7 +83,7 @@ public class PlaceResource {
     @Timed
     public List<Place> getAllPlaces() {
         log.debug("REST request to get all Places");
-        List<Place> places = placeRepository.findAllWithEagerRelationships();
+        List<Place> places = placeRepository.findAll();
         return places;
     }
 
@@ -97,7 +97,7 @@ public class PlaceResource {
     @Timed
     public ResponseEntity<Place> getPlace(@PathVariable Long id) {
         log.debug("REST request to get Place : {}", id);
-        Place place = placeRepository.findOneWithEagerRelationships(id);
+        Place place = placeRepository.findOne(id);
         return Optional.ofNullable(place)
             .map(result -> new ResponseEntity<>(
                 result,

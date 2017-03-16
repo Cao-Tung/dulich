@@ -161,4 +161,5 @@ public class PostResource {
         List<Post> posts = postRepository.findAllByTitleContaining(title);
         return posts;
     }
+
 }

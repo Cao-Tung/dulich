@@ -129,7 +129,7 @@ public class TourResource {
     @Timed
     public List<Tour> getAllTourByPlace(@PathVariable Long id) {
         log.debug("REST request to get a page of Tours");
-        List<Tour> tours = tourRepository.findAllByPlacesIdIn(id);
+        List<Tour> tours = tourRepository.findAllByPlacesId(id);
         return tours;
     }
 

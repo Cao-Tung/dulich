@@ -37,6 +37,12 @@
         <dd>
             <span>{{vm.tour.content}}</span>
         </dd>
+        <dt><span data-translate="dulichApp.tour.place">Place</span></dt>
+        <dd>
+            <span ng-repeat="place in vm.tour.places">
+                <a ui-sref="place-detail({id: place.id})">{{place.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
         <dt><span data-translate="dulichApp.tour.hotel">Hotel</span></dt>
         <dd>
             <span ng-repeat="hotel in vm.tour.hotels">

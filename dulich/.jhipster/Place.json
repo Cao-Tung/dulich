@@ -14,18 +14,17 @@
             "otherEntityRelationshipName": "place"
         },
         {
-            "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "place",
-            "relationshipName": "tour",
-            "otherEntityName": "tour",
-            "otherEntityField": "id",
-            "ownerSide": true
-        },
-        {
             "relationshipType": "many-to-one",
             "relationshipName": "region",
             "otherEntityName": "region",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "tour",
+            "otherEntityName": "tour",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "place"
         }
     ],
     "fields": [

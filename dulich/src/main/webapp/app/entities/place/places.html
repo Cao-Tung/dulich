@@ -22,7 +22,6 @@
                     <th><span data-translate="dulichApp.place.namePlace">Name Place</span></th>
                     <th><span data-translate="dulichApp.place.avatar">Avatar</span></th>
                     <th><span data-translate="dulichApp.place.content">Content</span></th>
-                    <th><span data-translate="dulichApp.place.tour">Tour</span></th>
                     <th><span data-translate="dulichApp.place.region">Region</span></th>
                     <th></th>
                 </tr>
@@ -38,11 +37,6 @@
                         <span ng-if="place.avatar">{{place.avatarContentType}}, {{vm.byteSize(place.avatar)}}</span>
                     </td>
                     <td>{{place.content}}</td>
-                    <td>
-                        <span ng-repeat="tour in place.tours">
-                            <a class="form-control-static" ui-sref="tour-detail({id: tour.id})">{{tour.id}}</a>{{$last ? '' : ', '}}
-                        </span>
-                    </td>
                     <td>
                         <a ui-sref="region-detail({id:place.region.id})">{{place.region.id}}</a>
                     </td>

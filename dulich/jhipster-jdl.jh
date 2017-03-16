@@ -54,16 +54,13 @@ relationship OneToMany {
 }
 
 relationship ManyToMany {
-	Place{tour} to Tour{place}
+	Tour{place} to Place{tour}
 }
 
 relationship ManyToMany {
 	Tour{hotel} to Hotel{tour}
 }
 
-relationship ManyToMany {
-	Place{tour} to Tour{place}
-}
 
 
 

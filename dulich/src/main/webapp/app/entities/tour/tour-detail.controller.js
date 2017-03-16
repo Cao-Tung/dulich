@@ -5,9 +5,9 @@
         .module('dulichApp')
         .controller('TourDetailController', TourDetailController);
 
-    TourDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Tour', 'Hotel', 'Place'];
+    TourDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Tour', 'Place', 'Hotel'];
 
-    function TourDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Tour, Hotel, Place) {
+    function TourDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Tour, Place, Hotel) {
         var vm = this;
 
         vm.tour = entity;

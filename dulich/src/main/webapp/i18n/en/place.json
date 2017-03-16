@@ -21,8 +21,8 @@
             "content": "Content",
             "post": "Post",
             "hotel": "Hotel",
-            "tour": "Tour",
-            "region": "Region"
+            "region": "Region",
+            "tour": "Tour"
         }
     }
 }

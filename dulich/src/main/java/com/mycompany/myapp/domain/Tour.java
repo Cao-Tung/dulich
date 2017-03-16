@@ -1,6 +1,5 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -55,15 +54,17 @@ public class Tour implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "tour_place",
+               joinColumns = @JoinColumn(name="tours_id", referencedColumnName="ID"),
+               inverseJoinColumns = @JoinColumn(name="places_id", referencedColumnName="ID"))
+    private Set<Place> places = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "tour_hotel",
                joinColumns = @JoinColumn(name="tours_id", referencedColumnName="ID"),
                inverseJoinColumns = @JoinColumn(name="hotels_id", referencedColumnName="ID"))
     private Set<Hotel> hotels = new HashSet<>();
-
-    @ManyToMany(mappedBy = "tours")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Place> places = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -177,31 +178,6 @@ public class Tour implements Serializable {
         this.content = content;
     }
 
-    public Set<Hotel> getHotels() {
-        return hotels;
-    }
-
-    public Tour hotels(Set<Hotel> hotels) {
-        this.hotels = hotels;
-        return this;
-    }
-
-    public Tour addHotel(Hotel hotel) {
-        hotels.add(hotel);
-        hotel.getTours().add(this);
-        return this;
-    }
-
-    public Tour removeHotel(Hotel hotel) {
-        hotels.remove(hotel);
-        hotel.getTours().remove(this);
-        return this;
-    }
-
-    public void setHotels(Set<Hotel> hotels) {
-        this.hotels = hotels;
-    }
-
     public Set<Place> getPlaces() {
         return places;
     }
@@ -225,6 +201,31 @@ public class Tour implements Serializable {
 
     public void setPlaces(Set<Place> places) {
         this.places = places;
+    }
+
+    public Set<Hotel> getHotels() {
+        return hotels;
+    }
+
+    public Tour hotels(Set<Hotel> hotels) {
+        this.hotels = hotels;
+        return this;
+    }
+
+    public Tour addHotel(Hotel hotel) {
+        hotels.add(hotel);
+        hotel.getTours().add(this);
+        return this;
+    }
+
+    public Tour removeHotel(Hotel hotel) {
+        hotels.remove(hotel);
+        hotel.getTours().remove(this);
+        return this;
+    }
+
+    public void setHotels(Set<Hotel> hotels) {
+        this.hotels = hotels;
     }
 
     @Override

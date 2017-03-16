@@ -5,9 +5,9 @@
         .module('dulichApp')
         .controller('PlaceDetailController', PlaceDetailController);
 
-    PlaceDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Place', 'Post', 'Hotel', 'Tour', 'Region'];
+    PlaceDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Place', 'Post', 'Hotel', 'Region', 'Tour'];
 
-    function PlaceDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Place, Post, Hotel, Tour, Region) {
+    function PlaceDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Place, Post, Hotel, Region, Tour) {
         var vm = this;
 
         vm.place = entity;

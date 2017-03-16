@@ -4,17 +4,18 @@
         {
             "relationshipType": "many-to-many",
             "otherEntityRelationshipName": "tour",
-            "relationshipName": "hotel",
-            "otherEntityName": "hotel",
+            "relationshipName": "place",
+            "otherEntityName": "place",
             "otherEntityField": "id",
             "ownerSide": true
         },
         {
             "relationshipType": "many-to-many",
-            "relationshipName": "place",
-            "otherEntityName": "place",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "tour"
+            "otherEntityRelationshipName": "tour",
+            "relationshipName": "hotel",
+            "otherEntityName": "hotel",
+            "otherEntityField": "id",
+            "ownerSide": true
         }
     ],
     "fields": [
