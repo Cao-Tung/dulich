@@ -98,6 +98,8 @@ public class PostResource {
     public ResponseEntity<Post> getPost(@PathVariable Long id) {
         log.debug("REST request to get Post : {}", id);
         Post post = postRepository.findOne(id);
+        post.upView();
+        post = postRepository.save(post);
         return Optional.ofNullable(post)
             .map(result -> new ResponseEntity<>(
                 result,

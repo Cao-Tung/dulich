@@ -7,59 +7,24 @@
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <link rel="stylesheet" type="text/css" href="/bower_components/semantic/dist/semantic.min.css">
+<link rel='stylesheet' href='/bower_components/textAngular/dist/textAngular.css'>
+<script src='/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+<script src='/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+<script src='/bower_components/textAngular/dist/textAngular.min.js'></script>
 <div class="ui grid ui" ng-cloak>
 	<div class="twelve wide column ui raised segment">
 		<h3>{{vm.post.title}}</h3>
+		<span class="label label-info"><i class="unhide icon"></i>&nbsp;Xem&nbsp;{{vm.post.view}}</span>
 		<hr>
 		<div class="fb-like" data-href="https://www.facebook.com/Du-L%E1%BB%8Bch-Xanh-176457449523977/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 		<br>
 		<dd>
-            <div ng-if="vm.post.avatar">
-                    <img data-ng-src="{{'data:' + vm.post.avatarContentType + ';base64,' + vm.post.avatar}}" style="max-width: 100%;" alt="post image" class="ui centered image">
-                {{vm.byteSize(vm.post.avatar)}}
-            </div>
-        </dd>
-		<!-- <img class="ui centered image" src={{vm.post.avatar}}> -->
-		<div>
-			<br>
-			<p style="text-align: justify;">
-				Ít ai biết rằng mai anh đào đã được trồng ở Mộc Châu gần 3 năm nay, nhiều cây cho hoa rực rỡ. Địa điểm đang được các bạn trẻ truyền tai nhau là công viên giải trí Pha Luông, nằm ở thị trấn Nông trường Mộc Châu.
-			</p>
-			<p>
-				Mai anh đào được trồng quanh một số lối đi trong khu giải trí. Cây không nổi bật bởi cành lá khẳng khiu, nhất là vào mùa thu và đông. Nhưng khi mùa xuân đến, từng chùm bung nở tạo nên cảnh sắc tươi tắn.
-			</p>
-			<p>
-				Nếu chỉ ngắm hoa, bạn sẽ không mất phí vào công viên. Hoa mai anh đào ở đây không nhiều như Đà Lạt nhưng khi vào mùa, hàng chục cây khoe sắc hồng cũng khiến khung cảnh trở nên lung linh, làm hình nền đẹp cho các bức ảnh của bạn.
-			</p>
-			<p>
-				Ngoài ra, trên đường vào bản Dọi, cách trung tâm thị trấn Mộc Châu gần 20 km, bạn cũng sẽ nhìn thấy màu hồng rất đặc trưng của loài hoa này.
-			</p>
-		</div>
-		<br>
-		<img class="ui centered image" src={{vm.content.image1}}>
-		<br>
-		<div>
-			<p style="text-align: justify;">
-				Mai anh đào Đà Lạt thường nở cuối tháng 1 hoặc đầu tháng 2 nhưng năm nay hoa nở muộn nên cuối tháng 2, nhiều con đường của thành phố mới bừng lên sắc màu quyến rũ.
-			</p>
-			<p style="text-align: justify;">
-				Nơi du khách dễ dàng nhìn ngắm mai anh đào là khu vực quanh hồ Xuân Hương. Ngoài ra, bạn có thể dạo quanh các tuyến đường như Đống Đa, Hùng Vương, Nguyễn Du, Quang Trung, Trần Hưng Đạo… Với những người thích vẻ đẹp hoang sơ, họ thường tìm đến khu vực hồ Tuyền Lâm hay dốc Đa Quý (Xuân Thọ, Trại Mát).
-			</p>
-			<p style="text-align: justify;">
-				Du khách nên chụp hình từ 6h đến 9h khi trời có nắng ấm nhẹ, hoa còn tươi, hoặc từ 15h30 đến 17h khi ánh sáng dịu.
-			</p>
-		</div>
-		<br>
-		<img class="ui centered image" src={{vm.content.image2}}>
-		<br>
-		<div>
-			<p style="text-align: justify;">
-				Cùng họ với mai anh đào, anh đào là một loài hoa “đặc sản” của Sapa dịp đầu năm. Khu ven hồ trung tâm thị trấn là nơi trồng nhiều hoa anh đào nhất. Khác với hoa đào truyền thống Việt Nam, hoa anh đào ở Sapa trông giống như những cái chuông được treo trên cây. Bởi vậy, người dân ở đây thường gọi là hoa đào chuông.
-			</p>
-			<p style="text-align: justify;">
-				Hoa thường nở dịp đầu năm, thời điểm này Sapa khá đông đúc nên bạn cần lên kế hoạch trước khi lên đường.
-			</p>
-		</div>
+			<div ng-if="vm.post.avatar">
+				<img data-ng-src="{{'data:' + vm.post.avatarContentType + ';base64,' + vm.post.avatar}}" style="max-width: 100%;" alt="post image" class="ui centered image">
+				{{vm.byteSize(vm.post.avatar)}}
+			</div>
+		</dd>
+		<div ng-bind-html="vm.post.content"></div>
 	</div>
 	<div class="four wide column">
 		<div class="row well ui raised segment">
@@ -91,6 +56,7 @@
 									<div class="content">
 										<div class="description">
 											<p ui-sref="post-place({id:post.id})">{{post.title}}</p>
+											<p><small class="text-muted">{{post.view}} View</small></p>
 											<small class="text-muted">{{post.createDate}}</small>
 										</div>
 									</div>
@@ -115,7 +81,7 @@
 									<div class="content">
 										<div class="description">
 											<p>{{tour.nameCompany}}</p>
-										<!-- 	<small class="text-muted">{{tour.createDate}}</small> -->
+											<!-- 	<small class="text-muted">{{tour.createDate}}</small> -->
 										</div>
 									</div>
 								</div>
@@ -139,7 +105,7 @@
 									<div class="content">
 										<div class="description">
 											<p>{{hotel.nameHotel}}</p>
-										<!-- 	<small class="text-muted">{{tour.createDate}}</small> -->
+											<!-- 	<small class="text-muted">{{tour.createDate}}</small> -->
 										</div>
 									</div>
 								</div>

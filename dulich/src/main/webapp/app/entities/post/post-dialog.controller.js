@@ -11,6 +11,7 @@
         var vm = this;
 
         vm.post = entity;
+        vm.post.view = 0;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;

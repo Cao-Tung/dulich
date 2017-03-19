@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="post in vm.posts track by post.id">
-                    <td><a ui-sref="post-place({id:post.id})">{{post.id}}</a></td>
+                    <td><a ui-sref="post-detail({id:post.id})">{{post.id}}</a></td>
                     <td><a ui-sref="post-place({id:post.id})">{{post.title}}</td>
                     <td><a ui-sref="post-place({id:post.id})">{{post.content}}</td>
                     <td>

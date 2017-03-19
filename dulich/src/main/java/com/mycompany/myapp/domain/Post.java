@@ -146,6 +146,10 @@ public class Post implements Serializable {
     public void setPlace(Place place) {
         this.place = place;
     }
+    
+    public void upView() {
+        view++;
+    }
 
     @Override
     public boolean equals(Object o) {
