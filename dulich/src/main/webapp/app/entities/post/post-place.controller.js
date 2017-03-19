@@ -5,11 +5,11 @@
         .module('dulichApp')
         .controller('PostPlaceController', PostPlaceController);
 
-    PostPlaceController.$inject = ['$scope', '$state', 'posts', 'tours', 'hotels'];
+    PostPlaceController.$inject = ['$scope', '$state', 'posts', 'tours', 'hotels','entity'];
 
-    function PostPlaceController ($scope, $state, posts, tours, hotels) {
+    function PostPlaceController ($scope, $state, posts, tours, hotels,entity) {
         var vm = this;
-        
+        vm.post = entity;
         $scope.uploadme;
 
     $scope.uploadImage = function() {

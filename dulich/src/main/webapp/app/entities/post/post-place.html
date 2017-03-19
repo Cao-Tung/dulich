@@ -9,11 +9,17 @@
 <link rel="stylesheet" type="text/css" href="/bower_components/semantic/dist/semantic.min.css">
 <div class="ui grid ui" ng-cloak>
 	<div class="twelve wide column ui raised segment">
-		<h3>Mai anh đào khoe sắc đầu xuân, hút khách hai miền</h3>
+		<h3>{{vm.post.title}}</h3>
 		<hr>
 		<div class="fb-like" data-href="https://www.facebook.com/Du-L%E1%BB%8Bch-Xanh-176457449523977/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 		<br>
-		<img class="ui centered image" src={{vm.content.image}}>
+		<dd>
+            <div ng-if="vm.post.avatar">
+                    <img data-ng-src="{{'data:' + vm.post.avatarContentType + ';base64,' + vm.post.avatar}}" style="max-width: 100%;" alt="post image" class="ui centered image">
+                {{vm.byteSize(vm.post.avatar)}}
+            </div>
+        </dd>
+		<!-- <img class="ui centered image" src={{vm.post.avatar}}> -->
 		<div>
 			<br>
 			<p style="text-align: justify;">
@@ -54,15 +60,6 @@
 				Hoa thường nở dịp đầu năm, thời điểm này Sapa khá đông đúc nên bạn cần lên kế hoạch trước khi lên đường.
 			</p>
 		</div>
-		<input type="file" fileread="uploadme" />
-    <img src="{{uploadme}}" width="100" height="50" alt="Image preview...">
-    <br/>
-    <p>
-      Image dataURI:
-      <pre>{{uploadme}}</pre>
-    </p>
-    <br/>
-    <button ng-click="uploadImage()">upload image</button>
 	</div>
 	<div class="four wide column">
 		<div class="row well ui raised segment">
@@ -93,7 +90,7 @@
 									</div>
 									<div class="content">
 										<div class="description">
-											<p>{{post.title}}</p>
+											<p ui-sref="post-place({id:post.id})">{{post.title}}</p>
 											<small class="text-muted">{{post.createDate}}</small>
 										</div>
 									</div>

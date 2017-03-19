@@ -30,9 +30,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="post in vm.posts track by post.id">
-                    <td><a ui-sref="post-detail({id:post.id})">{{post.id}}</a></td>
-                    <td>{{post.title}}</td>
-                    <td>{{post.content}}</td>
+                    <td><a ui-sref="post-place({id:post.id})">{{post.id}}</a></td>
+                    <td><a ui-sref="post-place({id:post.id})">{{post.title}}</td>
+                    <td><a ui-sref="post-place({id:post.id})">{{post.content}}</td>
                     <td>
                         <a ng-if="post.avatar" ng-click="vm.openFile(post.avatarContentType, post.avatar)">
                             <img data-ng-src="{{'data:' + post.avatarContentType + ';base64,' + post.avatar}}" style="max-height: 30px;" alt="post image"/>
@@ -42,7 +42,7 @@
                     <td>{{post.createDate | date:'medium'}}</td>
                     <td>{{post.view}}</td>
                     <td>
-                        <a ui-sref="place-detail({id:post.place.id})">{{post.place.id}}</a>
+                        <a ui-sref="place-detail({id:post.place.id})">{{post.place.namePlace}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

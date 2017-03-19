@@ -65,7 +65,7 @@
         })
         .state('post-place', {
             parent: 'app',
-            url: '/post-place',
+            url: '/post-place/{id}',
             data: {
                 authorities: []
             },
@@ -77,10 +77,13 @@
                 }
             },
             resolve: {
-                posts: ['Post', function(Post) {
-                    return Post.query().$promise;
+                entity: ['$stateParams', 'Post', function($stateParams, Post) {
+                    return Post.get({id : $stateParams.id}).$promise;
                 }],
-                tours: ['Tour', function(Tour) {
+                posts: ['entity', 'Place','Post', function(entity, Place, Post){
+                    return Post.view({id : entity.place.id}).$promise;
+                }],
+                tours: ['entity', 'Tour', function(entity,Tour) {
                     return Tour.query().$promise;
                 }],
                 hotels: ['Hotel', function(Hotel) {

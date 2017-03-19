@@ -134,7 +134,7 @@ public class PostResource {
     }
 
     /**
-     * GET /posts/view/place/{id} : get all the posts order by view.
+     * GET /posts/view/place/:id : get all the posts order by view.
      *
      * @return the ResponseEntity with status 200 (OK) and the list of posts in
      *         body
