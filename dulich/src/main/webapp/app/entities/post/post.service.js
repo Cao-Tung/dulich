@@ -33,6 +33,18 @@
                     }
                     return data;
                 }
+            },
+            'viewall': {
+                method: 'GET',
+                url: 'api/posts/view',
+                isArray: true,
+                transformResponse: function (data) {
+                    if (data) {
+                        data = angular.fromJson(data);
+                        data.createdDate = DateUtils.convertDateTimeFromServer(data.createdDate);
+                    }
+                    return data;
+                }
             }
         });
     }

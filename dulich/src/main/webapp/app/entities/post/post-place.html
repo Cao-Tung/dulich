@@ -27,27 +27,12 @@
 		<div ng-bind-html="vm.post.content"></div>
 	</div>
 	<div class="four wide column">
-		<div class="row well ui raised segment">
-			<p>Du Lịch Sapa</p>
-			<hr><hr>
-			<div ui middle aligned divided>
-				<img class="ui centered image" src={{vm.content.imageSapa}}>
-				<br>
-				<p>
-					Thị trấn Sapa thuộc tỉnh Lào Cai, có địa hình 1600 mét cao hơn mực nước biển. Khí trời mát mẻ vùng núi và cảnh quan đẹp hoang sơ chính là những yếu tố giúp Sapa trở thành một khu nghỉ mát nổi tiếng ở miền Bắc Việt Nam. Tại đây, du khách có thể chinh phục đỉnh Phan Si Păng của dãy Hoàng Liên Sơn, ngắm vườn hoa Hàm Rồng và khám phá thung lũng Mường Hoa. Các địa điểm tham quan khác khi du lịch Sapa bao gồm: Thác Bạc, Thác Tình Yêu, Bản Hồ, Chợ phiên Sapa…
-				</p>
-				<hr>
-				<p>
-					Cùng Du Lịch Xanh khám phá Sapa ...
-				</p>
-			</div>
-		</div>
 		<div class="row well ui raised segment ">
 			<div class="five wide column">
 				<div class="">
 					<div class="ui-items">
 						<div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Đọc Nhiều</h5></div>
-						<a href="#" class="list-group-item" ng-repeat="post in vm.posts">
+						<a href="#" class="list-group-item" ng-repeat="post in vm.posts | limitTo: 5">
 							<div class="ui items">
 								<div class="item">
 									<div class="ui top aligned">
@@ -72,7 +57,7 @@
 				<div class="">
 					<div class="ui-items">
 						<div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Công Ty Tổ Chức Tour Sapa</h5></div>
-						<a href="#" class="list-group-item" ng-repeat="tour in vm.tours">
+						<a href="#" class="list-group-item" ng-repeat="tour in vm.tours | limitTo: 5">
 							<div class="ui items">
 								<div class="item">
 									<div class="ui top aligned">
@@ -96,7 +81,7 @@
 				<div class="">
 					<div class="ui-items">
 						<div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Khách Sạn Gía Tốt</h5></div>
-						<a href="#" class="list-group-item" ng-repeat="hotel in vm.hotels">
+						<a href="#" class="list-group-item" ng-repeat="hotel in vm.hotels | limitTo: 5">
 							<div class="ui items">
 								<div class="item">
 									<div class="ui top aligned">

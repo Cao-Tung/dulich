@@ -80,6 +80,15 @@
                 posts: ['Post', function(Post) {
                     return Post.query().$promise;
                 }],
+                // entity: ['$stateParams','Post', function($stateParams, Post) {
+                //     return Post.get({id : $stateParams.id}).$promise;
+                // }],
+                postsview: ['Post',function(Post){
+                    return Post.viewall().$promise;
+                }],
+                places: ['Place', function(Place){
+                  return Place.query().$promise;
+                }],
                 tours: ['Tour', function(Tour) {
                     return Tour.query().$promise;
                 }],

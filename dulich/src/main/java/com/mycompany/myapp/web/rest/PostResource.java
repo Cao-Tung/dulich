@@ -164,4 +164,18 @@ public class PostResource {
         return posts;
     }
 
+    /**
+     * GET /posts/view : get all the posts order by view.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of posts in
+     *         body
+     */
+    @GetMapping("/posts/view")
+    @Timed
+    public List<Post> getAllPostOrderByView() {
+        log.debug("REST request to get a page of Posts");
+        List<Post> posts = postRepository.findAllByOrderByViewDesc();
+        return posts;
+    }
+
 }

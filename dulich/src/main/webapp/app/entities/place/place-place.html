@@ -1,7 +1,11 @@
 <link rel="stylesheet" type="text/css" href="/bower_components/semantic/dist/semantic.min.css">
+<link rel='stylesheet' href='/bower_components/textAngular/dist/textAngular.css'>
+<script src='/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+<script src='/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+<script src='/bower_components/textAngular/dist/textAngular.min.js'></script>
 <style>
   *{
-    font-family:time new roman,arial;
+    font-family:time new roman;
 
   }
   a {
@@ -47,291 +51,115 @@
         <hr>
         <div class="region">
           <div class="ui grid link two cards">
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/anh2.jpg" alt="anh2.jpg">
+            <div class="ui row container grid">
+              <span class="ui action input" style="width: 800px;">
+                <input placeholder="Search..." type="text" >
+                <button class="ui button btn-primary">Search</button>
+              </span>
+            </div>
+            <div class="card ui fluid"  ng-repeat="data in vm.datas">
+              <div ng-if="vm.data.avatar">
+                <img data-ng-src="{{'data:' + data.avatarContentType + ';base64,' + data.avatar}}">
               </div>
               <div class="content">
-                <h4 class="headertext-weight-bold text-justify"><strong><a href="#">3N2Đ nghỉ dưỡng ở Havana Nha Trang gồm vé xe lửa 5 sao khứ hồi chỉ 2,4 triệu</a></strong></h4>
+                <h4 class="headertext-weight-bold text-justify"><strong><a ui-sref="post-place({id:data.id})"><h2>{{data.title}}</h2></a></strong></h4>
                 <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span><span class="view">| view</span>
+                  <span class="date ">ngày đăng: {{data.createDate}} </span><span class="view right floated">lượt xem:{{data.view}}</span>
                 </small>
-                <p class="text-justify text-muted description">Chỉ với 2,4 triệu là bạn đã có thể tự thưởng cho mình một kỳ nghỉ Nha Trang đẳng cấp 5 sao với xe lửa khứ hồi sang trọng cực chất và 2 đêm nghỉ dưỡng tại khách sạn Havana…
+                <p class="text-justify text-muted description" ng-bind-html="data.content | limitTo : 100">
                 </p>
               </div>
             </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/hangsondoong.jpg" alt="anh2.jpg">
-              </div>
-              <div class="content">
-                <h4 class="headertext-weight-bold text-justify"><strong><a href="#">Hang Sơn Đoòng, thác Bản Giốc là kỳ quan châu Á</a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span><span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Hai thắng cảnh của Việt Nam là hang Sơn Đoòng và thác Bản Giốc có tên trong danh sách 7 kỳ quan thiên nhiên do tạp chí National Geographic bình chọn.
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/tokyo.png" alt="tokyo">
-              </div>
-              <div class="content">
-                <h4 class=" headertext-weight-bold text-justify"><strong><a href="#">Không thể bỏ qua 7 điểm ngắm hoa anh đào tuyệt đẹp ở Tokyo
-                </a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span> <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Khoảng thời gian từ cuối tháng 3 đến đầu tháng 4, Tokyo như chìm đắm trong sắc hoa anh đào đua nở. Dưới đây là những địa điểm bạn nên “bỏ túi” để thưởng hoa một cách trọn vẹn nhất.
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/backinh.jpg"  alt="backinh.jpg">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">Tour Trung Quốc 5N4Đ vi vu Bắc Kinh – Vạn Lý Trường Thành với giá chưa tới 10 triệu đồng</a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span>
-                  <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Chỉ với 9.990.000 đồng/khách, bạn sẽ cơ có hội khám phá những điểm đến nổi tiếng của Trung Quốc như: Di Hòa Viên, Thiên An Môn, sân vận động tổ chim, Vạn Lý Trường Thành…
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/thitran.jpg"  alt="thị trấn lớn">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">Thị trấn tuyết lớn nhất Đông Nam Á đã xuất hiện tại Sài Gòn
-                </a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span>
-                  <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Giờ đây bạn chẳng cần cực khổ canh thời gian ra Sapa ngắm tuyết hay sang tận Bangkok xếp hàng mua vé trượt tuyết nữa, bởi thị trấn tuyết châu Âu đã “hạ cánh” tại Sài Gòn rồi, còn chần…
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/vungcaobinhlieu.jpg"  alt="vùng cao bình liêu">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">Quyến rũ vùng cao Bình Liêu</a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span>
-                  <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Những con đường từ xa chỉ như một sợi chỉ. Những thác nước hùng vĩ với hình bóng cô gái Dao Thanh Phán đội mũ sặc sỡ… là điểm khác biệt bạn sẽ nhìn thấy nếu đến thăm vùng cao…
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/hoaanhdao.jpg"  alt="hoa anh đào nhật bản  ">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">Cảnh đẹp tựa thiên đường ở Nhật Bản vào mùa hoa anh đào nở</a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span>
-                  <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Sắc hồng khi hàng trăm cây anh đào nở bung khiến Nhật Bản đẹp và thơ mộng hơn bất cứ thời điểm nào.
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/nhatrang.jpg"  alt="Nhà Trắng ở mỹ">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">Tour tham quan Nhà Trắng được mở cửa trở lại
-                </a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam</span>
-                  <span class="view"> | view</span>
-                </small>
-                <p class="text-justify text-muted description">Sau một thời gian tạm ngừng, nơi ở của gia đình tổng thống Mỹ sẽ mở cửa trở lại các tour dành cho du khách.
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/bangkok.jpg"  alt="4 quán đẹp ở bangkok">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">4 quán mới này sẽ chứng minh chẳng bao giờ bạn đi hết nổi cafe đẹp ở Bangkok!</a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span>
-                  <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Không chỉ đáp ứng được nhu cầu về phần nhìn, những quán cafe này còn được nhiều người yêu thích bởi hương vị đặc trưng, thực đơn đa dạng cũng như những món nước, món bánh đặc sắc.
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/caphevungtau.jpg"  alt="cà phê vũng tàu">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">Danh sách các quán cà phê đẹp ở Vũng Tàu ‘save’ về để đi dần cho cả năm</a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span>
-                  <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Nếu đến Vũng Tàu mà bạn lúng túng vì không biết ngồi đâu để thư giãn, chụp ảnh check-in sống ảo hay thưởng thức đồ uống ngon thì hãy “save” ngay những địa chỉ này nhé.
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/taxua.jpg"  alt="Tà Xùa ">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">Tà Xùa đẹp bình yên trong sắc đào nở muộn</a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span>
-                  <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Hoa đào bung nở bên những mái nhà trầm mặc là cảnh đẹp yên bình mà các du khách khó lòng bỏ qua khi đến Tà Xùa (Bắc Yên, Sơn La) những ngày xuân.
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/binhthuan.jpg"  alt="20 địa điểm đẹp ở bình thuận">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">Đến Bình Thuận nhất định phải check-in cho bằng hết 20 điểm đến hấp dẫn này</a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span>
-                  <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Bình Thuận không phải là điểm đến xa lạ với nhiều du khách, nhưng vẫn còn nhiều điểm đến tuyệt đẹp nơi đây vẫn là ẩn số đối với nhiều người.
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/thunglungtinhyeu.png"  alt="thung lũng tình yêu tại Đà Lạt ">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">Cập nhật ngay thông tin tăng giá vé tham quan Thung Lũng Tình Yêu tại Đà Lạt</a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span>
-                  <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Từ ngày 1/3/2017 khách đến tham quan Thung Lũng Tình Yêu tại Đà Lạt sẽ phải mua vé với giá 100.000 đồng cho người lớn và 50.000 đồng cho trẻ em.
-                </p>
-              </div>
-            </div>
-            <div class="card ui fluid">
-              <div class="ui fluid image">
-                <img src="content/images/diemden/taytang.jpg"  alt="Tây Tạng">
-              </div>
-              <div class="content">
-                <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">Tây Tạng – nơi thời gian ngừng lại</a></strong></h4>
-                <small class="text-muted">
-                  <span class="date ">ngay/thang/nam </span>
-                  <span class="view">| view</span>
-                </small>
-                <p class="text-justify text-muted description">Bạn sẽ được tách khỏi cuộc sống ồn ào, hoà mình vào không khí bình yên, thanh tịnh của đất Phật.
-                </p>
-              </div>
-            </div>
+
           </div>
         </div>
+        <!--pagination-->
+        <div style="margin-top: 10px;" class="ui row container grid center aligned"><!--pagination-->
+          <a><button ng-disabled="vm.currentPage==1" ng-click="vm.currentPage=vm.currentPage-1">&larr; Quay lại </button></a>
+          <div>{{vm.currentPage}}/{{tong()}}</div>
+          <a><button ng-disabled="vm.currentPage*vm.pageSize >= vm.size" ng-click="vm.currentPage=vm.currentPage+1"> Tiếp Theo &rarr;</button></a>
+        </div>
+        <!-- /pagination-->
       </div>
     </div>
     <div class="five wide column">
-      <div class="ui grid fluid">
-        <div class="ui items">
-          <div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Đọc Nhiều</h5></div>
-          <a href="#" class="list-group-item">
-            <div class="ui items">
-              <div class="item">
-                <div class="ui top aligned tiny image">
-                  <img src="content/images/docnhieu/dalat.jpg" class="img-thumbnail">
+      <div class="row well ui raised segment ">
+        <div class="five wide column">
+          <div class="">
+            <div class="ui-items">
+              <div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Đọc Nhiều</h5></div>
+              <a href="#" class="list-group-item" ng-repeat="post in vm.postsview | limitTo: 5">
+                <div class="ui items">
+                  <div class="item">
+                    <div class="ui top aligned">
+                      <i class="tags red icon"></i>
+                    </div>
+                    <div class="content">
+                      <div class="description">
+                        <p ui-sref="post-place({id:post.id})">{{post.title}}</p>
+                        <p><small class="text-muted">{{post.view}} View</small></p>
+                        <small class="text-muted">{{post.createDate}}</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="content">
-                  <div class="description">
-                    <p>Du lịch Vũng Tàu: Cẩm nang từ A đến Z</p>
-                    <small class="text-muted">ngay-thang-nam</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row well ui raised segment ">
+      <div class="five wide column">
+        <div class="">
+          <div class="ui-items">
+            <div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Công Ty Tổ Chức Tour Sapa</h5></div>
+            <a href="#" class="list-group-item" ng-repeat="tour in vm.tours | limitTo: 5">
+              <div class="ui items">
+                <div class="item">
+                  <div class="ui top aligned">
+                    <i class="tags red icon"></i>
+                  </div>
+                  <div class="content">
+                    <div class="description">
+                      <p>{{tour.nameCompany}}</p>
+                      <!--  <small class="text-muted">{{tour.createDate}}</small> -->
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </a>
-          <a href="#" class="list-group-item">
-           <div class="ui items">
-             <div class="item">
-              <div class="ui top aligned tiny image">
-                <img src="content/images/docnhieu/namdu.jpg" class="img-thumbnail" alt="Du lịch Nam Du">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="row well ui raised segment ">
+      <div class="five wide column">
+        <div class="">
+          <div class="ui-items">
+            <div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Khách Sạn Gía Tốt</h5></div>
+            <a href="#" class="list-group-item" ng-repeat="hotel in vm.hotels | limitTo: 5">
+              <div class="ui items">
+                <div class="item">
+                  <div class="ui top aligned">
+                    <i class="tags red icon"></i>
+                  </div>
+                  <div class="content">
+                    <div class="description">
+                      <p>{{hotel.nameHotel}}</p>
+                      <!--  <small class="text-muted">{{tour.createDate}}</small> -->
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="content">
-               <div class="description">
-                 <p class="font-weight-bold">Du lịch đảo Nam Du: Cẩm nang từ A đến Z...
-                 </p>
-                 <small class="text-muted">ngay-thang-nam</small>
-               </div>
-             </div>
-           </div>
-         </div>
-       </a>
-       <a href="#" class="list-group-item">
-        <div class="ui items">
-          <div class="item">
-           <div class="ui top aligned tiny image">
-            <img src="content/images/docnhieu/biennhatrang.jpg" class="img-thumbnail">
-          </div>
-          <div class="content">
-            <div class="description">
-              <p class="font-weight-bold">Du lịch Nha Trang: 10 điểm du lịch tham quan hấp d...
-              </p>
-              <small class="text-muted">ngay-thang-nam</small>
-            </div>
+            </a>
           </div>
         </div>
       </div>
-    </a>
-    <a href="#" class="list-group-item">
-     <div class="ui items">
-       <div class="item">
-        <div class="ui top aligned tiny image">
-          <img src="content/images/docnhieu/dalat.jpg" class="img-thumbnail" alt="vẻ đẹp ĐÀ Lạt">
-        </div>
-        <div class="content">
-         <div class="description">
-          <p class="font-weight-bold">Du lịch Đà Lạt - Cẩm nang du lịch Đà Lạt từ A đến ...
-          </p>
-          <small class="text-muted">ngay-thang-nam</small>
-        </div>
-      </div>
     </div>
-  </div>
-</a>
-<a href="#" class="list-group-item">
-  <div class="ui items">
-    <div class="item">
-     <div class="ui top aligned tiny image">
-      <img src="content/images/docnhieu/kinhnghiem.jpg" class="img-thumbnail">
     </div>
-    <div class="content">
-      <div class="description">
-        <p class="font-weight-bold d-flex ">Tất tần tật những kinh nghiệm bạn cần biết...
-        </p>
-        <small class="text-muted">ngay-thang-nam</small>
-      </div>
-    </div>
-  </div>
 </div>
-</a>
-</div>
-<div class=" sixteen wide column container" >
+
+<!-- <div class=" sixteen wide column container" >
   <div class="panel panel-primary">
     <div class="panel-heading text-center">khách sạn Việt Nam</div>
     <div class="panel-body" style="border-bottom: 1px solid #81BEF7;"><a href="#">khách sạn Đà Nẵng</a></div>
@@ -341,7 +169,7 @@
     <div class="panel-body" style="border-bottom: 1px solid #81BEF7;"><a href="#">khách sạn Sài Gòn</a></div>
     <div class="panel-body"><a href="#">khách sạn Vũng Tàu</a></div>
   </div>
-</div>
+</div> -->
 </div>
 </div>
 </div>
