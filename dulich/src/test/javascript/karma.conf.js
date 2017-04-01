@@ -33,6 +33,7 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/rangy/rangy-selectionsaverestore.js',
             'src/main/webapp/bower_components/rangy/rangy-serializer.js',
             'src/main/webapp/bower_components/rangy/rangy-textrange.js',
+            'src/main/webapp/bower_components/leaflet/dist/leaflet-src.js',
             'src/main/webapp/bower_components/angular/angular.js',
             'src/main/webapp/bower_components/angular-aria/angular-aria.js',
             'src/main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',

@@ -45,6 +45,30 @@
                     }
                     return data;
                 }
+            },
+            'byplace': {
+                method: 'GET',
+                url: 'api/posts/place/:id',
+                isArray: true,
+                transformResponse: function (data) {
+                    if (data) {
+                        data = angular.fromJson(data);
+                        data.createdDate = DateUtils.convertDateTimeFromServer(data.createdDate);
+                    }
+                    return data;
+                }
+            },
+            'search': {
+                method: 'GET',
+                url: '/api/posts/title/:title',
+                isArray: true,
+                transformResponse: function (data) {
+                    if (data) {
+                        data = angular.fromJson(data);
+                        data.createdDate = DateUtils.convertDateTimeFromServer(data.createdDate);
+                    }
+                    return data;
+                }
             }
         });
     }

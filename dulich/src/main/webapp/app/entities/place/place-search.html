@@ -1,0 +1,185 @@
+<link rel="stylesheet" type="text/css" href="/bower_components/semantic/dist/semantic.min.css">
+<link rel='stylesheet' href='/bower_components/textAngular/dist/textAngular.css'>
+<script src='/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+<script src='/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+<script src='/bower_components/textAngular/dist/textAngular.min.js'></script>
+<style>
+  *{
+    font-family:time new roman;
+
+  }
+  a {
+    color: black;
+  }
+  a:hover{
+    color:blue;
+  }
+
+  .panel-body a{
+    boder-bottom: 1px solid blue;/*ui grid container*/
+  }
+  hr {
+    height:2px;
+    background-color: gray;
+    width:92.5%;
+
+  }
+</style>
+<div ng-cloak >
+<div ui-view="place"></div>
+  <div class="ui grid" >
+    <div class=" eleven wide column ">
+      <div class="row ui grid fluid" style="margin-bottom: 50px;">
+        <div class="sixteen wide column ui grid container">
+          <div class="column">
+            <h2 class="font-weight-bold view hm-white-slight"><strong><a href="#">Mộc Châu đã bắt đầu vào mua hoa mận rồi, rủ bạn bè đi săn ảnh đẹp thôi nào!</a></strong></h2>
+            <div class="row">
+              <div class="ui two column grid">
+                <div class="column">
+                  <div class="ui huge image">
+                    <img src="content/images/diemden/anh1.jpg "  alt="anh1.jpg">
+                  </div>
+                </div>
+                <div class="column text-left">
+                  <p>Đến Mộc Châu vào mùa hoa mận trắng, bạn sẽ như lạc vào xứ sở thần tiên bởi hoa mận phủ trắng khắp  núi đồi, khắp thung lũng tạo thành cảnh đẹp như chốn thiên đường giữa lưng chừng mây.
+                  </p>
+                  <a href="" class="btn btn-primary">XEM THÊM >></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="region">
+          <div class="ui grid link two cards">
+            <div class="ui row container grid">
+
+            <!-- <form ng-submit="vm.search(title)">
+                <input type="text" class="form-control" name="title" id="field_content" ng-model="title" />
+            </form> -->
+              <form ng-submit="vm.search()">
+              <span class="ui action input" style="width: 800px;">
+                <input placeholder="Search..." type="text" ng-model="title" >
+                <button class="ui button btn-primary" >Search</button>
+              </span>
+              </form>
+            </div>
+           <!--  <div ng-bind="vm.sr"> -->
+            <div class="card ui fluid"  ng-repeat="data in vm.datas">
+              <!-- <div ng-if="vm.data.avatar">
+                <img data-ng-src="{{'data:' + data.avatarContentType + ';base64,' + data.avatar}}">
+              </div> -->
+              <div class="content">
+                <h4 class="headertext-weight-bold text-justify"><strong><a ui-sref="post-place({id:data.id})"><h2>{{data.title}}</h2></a></strong></h4>
+                <small class="text-muted">
+                  <span class="date ">ngày đăng: {{data.createDate}} </span><span class="view right floated">lượt xem:{{data.view}}</span>
+                </small>
+                <p class="text-justify text-muted description" ng-bind-html="data.content | limitTo : 100">
+                </p>
+              </div>
+            </div>
+            <!-- </div> -->
+
+          </div>
+        </div>
+        <!--pagination-->
+        <div style="margin-top: 10px;" class="ui row container grid center aligned"><!--pagination-->
+          <a><button ng-disabled="vm.currentPage==1" ng-click="vm.currentPage=vm.currentPage-1">&larr; Quay lại </button></a>
+          <div>{{vm.currentPage}}/{{tong()}}</div>
+          <a><button ng-disabled="vm.currentPage*vm.pageSize >= vm.size" ng-click="vm.currentPage=vm.currentPage+1"> Tiếp Theo &rarr;</button></a>
+        </div>
+        <!-- /pagination-->
+      </div>
+    </div>
+    <div class="five wide column">
+      <div class="row well ui raised segment ">
+        <div class="five wide column">
+          <div class="">
+            <div class="ui-items">
+              <div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Đọc Nhiều</h5></div>
+              <a href="#" class="list-group-item" ng-repeat="post in vm.postsview | limitTo :5">
+                <div class="ui items">
+                  <div class="item">
+                    <div class="ui top aligned">
+                      <i class="tags red icon"></i>
+                    </div>
+                    <div class="content">
+                      <div class="description">
+                        <p ui-sref="post-place({id:post.id})">{{post.title}}</p>
+                        <p><small class="text-muted">{{post.view}} View</small></p>
+                        <small class="text-muted">{{post.createDate}}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row well ui raised segment ">
+      <div class="five wide column">
+        <div class="">
+          <div class="ui-items">
+            <div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Công Ty Tổ Chức Tour {{vm.entity.namePlace}}</h5></div>
+            <a href="#" class="list-group-item" ng-repeat="tour in vm.tours | limitTo: 5">
+              <div class="ui items">
+                <div class="item">
+                  <div class="ui top aligned">
+                    <i class="tags red icon"></i>
+                  </div>
+                  <div class="content">
+                    <div class="description">
+                      <p>{{tour.nameCompany}}</p>
+                      <!--  <small class="text-muted">{{tour.createDate}}</small> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="row well ui raised segment ">
+      <div class="five wide column">
+        <div class="">
+          <div class="ui-items">
+            <div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Khách Sạn Gía Tốt</h5></div>
+            <a href="#" class="list-group-item" ng-repeat="hotel in vm.hotels | limitTo: 5">
+              <div class="ui items">
+                <div class="item">
+                  <div class="ui top aligned">
+                    <i class="tags red icon"></i>
+                  </div>
+                  <div class="content">
+                    <div class="description">
+                      <p>{{hotel.nameHotel}}</p>
+                      <!--  <small class="text-muted">{{tour.createDate}}</small> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+
+<!-- <div class=" sixteen wide column container" >
+  <div class="panel panel-primary">
+    <div class="panel-heading text-center">khách sạn Việt Nam</div>
+    <div class="panel-body" style="border-bottom: 1px solid #81BEF7;"><a href="#">khách sạn Đà Nẵng</a></div>
+    <div class="panel-body" style="border-bottom: 1px solid #81BEF7;"><a href="#">khách sạn Đà Lạt</a></div>
+    <div class="panel-body" style="border-bottom: 1px solid #81BEF7;"><a href="#">Khách sạn Hà Nội</a></div>
+    <div class="panel-body" style="border-bottom: 1px solid #81BEF7;"><a href="#">khách sạn Nha Trang</a></div>
+    <div class="panel-body" style="border-bottom: 1px solid #81BEF7;"><a href="#">khách sạn Sài Gòn</a></div>
+    <div class="panel-body"><a href="#">khách sạn Vũng Tàu</a></div>
+  </div>
+</div> -->
+</div>
+</div>
+</div>
+</div>

@@ -1,36 +1,45 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('dulichApp')
-        .controller('PostPlaceController', PostPlaceController);
+  angular
+  .module('dulichApp')
+  .controller('PostPlaceController', PostPlaceController);
 
-    PostPlaceController.$inject = ['$scope', '$state', 'posts', 'tours', 'hotels','entity'];
+  PostPlaceController.$inject = ['$scope', '$state', 'posts', 'tours', 'hotels','entity'];
 
-    function PostPlaceController ($scope, $state, posts, tours, hotels,entity) {
-        var vm = this;
-        vm.post = entity;
-        $scope.uploadme;
+  function PostPlaceController ($scope, $state, posts, tours, hotels,entity) {
+    var vm = this;
+    vm.post = entity;
+    $scope.uploadme;
+    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar'}).addTo(mymap);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'your.mapbox.project.id',
+    accessToken: 'your.mapbox.public.access.token'
+}).addTo(mymap);
 
     $scope.uploadImage = function() {
       var fd = new FormData();
       var imgBlob = dataURItoBlob($scope.uploadme);
       fd.append('file', imgBlob);
       $http.post(
-          'imageURL',
-          fd, {
-            transformRequest: angular.identity,
-            headers: {
-              'Content-Type': undefined
-            }
+        'imageURL',
+        fd, {
+          transformRequest: angular.identity,
+          headers: {
+            'Content-Type': undefined
           }
+        }
         )
-        .success(function(response) {
-          console.log('success', response);
-        })
-        .error(function(response) {
-          console.log('error', response);
-        });
+      .success(function(response) {
+        console.log('success', response);
+      })
+      .error(function(response) {
+        console.log('error', response);
+      });
     }
 
 
@@ -47,15 +56,15 @@
       });
     }
 
-        vm.posts = posts;
-        vm.tours = tours;
-        vm.hotels = hotels;
-        vm.content = {
-            title:'Mai anh đào khoe sắc đầu xuân, hút khách hai miền',
-            image:'../content/images/ivivuSapa.jpg',
-            imageSapa:'../content/images/Sapa.jpg',
-            image1:'../content/images/ivivuSapa1.jpg',
-            image2:'../content/images/ivivuSapa2.jpg'
-        }
+    vm.posts = posts;
+    vm.tours = tours;
+    vm.hotels = hotels;
+    vm.content = {
+      title:'Mai anh đào khoe sắc đầu xuân, hút khách hai miền',
+      image:'../content/images/ivivuSapa.jpg',
+      imageSapa:'../content/images/Sapa.jpg',
+      image1:'../content/images/ivivuSapa1.jpg',
+      image2:'../content/images/ivivuSapa2.jpg'
     }
+  }
 })();

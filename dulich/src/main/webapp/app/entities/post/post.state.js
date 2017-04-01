@@ -84,10 +84,10 @@
                     return Post.view({id : entity.place.id}).$promise;
                 }],
                 tours: ['entity', 'Tour', function(entity,Tour) {
-                    return Tour.query().$promise;
+                    return Tour.byplace({id : entity.place.id}).$promise;
                 }],
-                hotels: ['Hotel', function(Hotel) {
-                    return Hotel.query().$promise;
+                hotels: ['entity', 'Hotel',function(entity,Hotel) {
+                    return Hotel.byplace({id : entity.place.id}).$promise;
                 }],
                 mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
                     $translatePartialLoader.addPart('home');

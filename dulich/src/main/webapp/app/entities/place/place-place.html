@@ -26,6 +26,7 @@
   }
 </style>
 <div ng-cloak >
+<div ui-view="place"></div>
   <div class="ui grid" >
     <div class=" eleven wide column ">
       <div class="row ui grid fluid" style="margin-bottom: 50px;">
@@ -52,12 +53,19 @@
         <div class="region">
           <div class="ui grid link two cards">
             <div class="ui row container grid">
+
+            <!-- <form ng-submit="vm.search(title)">
+                <input type="text" class="form-control" name="title" id="field_content" ng-model="title" />
+            </form> -->
+              <form ng-submit="vm.search()">
               <span class="ui action input" style="width: 800px;">
-                <input placeholder="Search..." type="text" >
-                <button class="ui button btn-primary">Search</button>
+                <input placeholder="Search..." type="text" ng-model="title">
+                <button class="ui button btn-primary" ng-click="vm.search()">Search</button>
               </span>
+              </form>
             </div>
-            <div class="card ui fluid"  ng-repeat="data in vm.datas">
+            <div ng-bind="vm.sr">
+            <div class="card ui fluid"  ng-repeat="data in vm.sr">
               <div ng-if="vm.data.avatar">
                 <img data-ng-src="{{'data:' + data.avatarContentType + ';base64,' + data.avatar}}">
               </div>
@@ -69,6 +77,7 @@
                 <p class="text-justify text-muted description" ng-bind-html="data.content | limitTo : 100">
                 </p>
               </div>
+            </div>
             </div>
 
           </div>
@@ -88,7 +97,7 @@
           <div class="">
             <div class="ui-items">
               <div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Đọc Nhiều</h5></div>
-              <a href="#" class="list-group-item" ng-repeat="post in vm.postsview | limitTo: 5">
+              <a href="#" class="list-group-item" ng-repeat="post in vm.postsview | limitTo :5">
                 <div class="ui items">
                   <div class="item">
                     <div class="ui top aligned">
@@ -112,7 +121,7 @@
       <div class="five wide column">
         <div class="">
           <div class="ui-items">
-            <div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Công Ty Tổ Chức Tour Sapa</h5></div>
+            <div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Công Ty Tổ Chức Tour {{vm.entity.namePlace}}</h5></div>
             <a href="#" class="list-group-item" ng-repeat="tour in vm.tours | limitTo: 5">
               <div class="ui items">
                 <div class="item">

@@ -65,7 +65,7 @@
         })
         .state('place-place', {
             parent: 'app',
-            url: '/place-place',
+            url: '/place-place/{id}',
             data: {
                 authorities: []
             },
@@ -77,24 +77,65 @@
                 }
             },
             resolve: {
-                posts: ['Post', function(Post) {
-                    return Post.query().$promise;
+                entity: ['$stateParams', 'Place', function($stateParams, Place) {
+                    return Place.get({id : $stateParams.id}).$promise;
                 }],
-                // entity: ['$stateParams','Post', function($stateParams, Post) {
-                //     return Post.get({id : $stateParams.id}).$promise;
+                posts: ['entity', 'Post', function(entity, Post) {
+                    return Post.byplace({id : entity.id}).$promise;
+                }],
+                postsview: ['Post',function(Post){
+                    return Post.viewall().$promise;
+                }],
+                // postsearch: ['Place', function(Place){
+                //   return Post.search({title : "Hoa"}).$promise;
+                // }],
+                tours: ['entity', 'Tour', function(entity,Tour) {
+                    return Tour.byplace({id : entity.id}).$promise;
+                }],
+                hotels: ['entity', 'Hotel',function(entity,Hotel) {
+                    return Hotel.byplace({id : entity.id}).$promise;
+                }],
+                mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
+                    $translatePartialLoader.addPart('home');
+                    return $translate.refresh();
+                }]
+            }
+        })
+        .state('place-search', {
+            parent: 'app',
+            url: '/place-search/{title}',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/place/place-search.html',
+                    controller: 'PlaceSearchController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                // entity: ['$stateParams', 'Place', function($stateParams, Place) {
+                //     return Place.get({id : $stateParams.id}).$promise;
+                // }],
+                postsearch: ['$stateParams','Post', function($stateParams,Post){
+                  return Post.search({title : $stateParams.title}).$promise;
+                }],
+                // postsearch: ['Post', function(Post){
+                //   return Post.search({title : 'Hoa'}).$promise;
                 // }],
                 postsview: ['Post',function(Post){
                     return Post.viewall().$promise;
                 }],
-                places: ['Place', function(Place){
-                  return Place.query().$promise;
-                }],
-                tours: ['Tour', function(Tour) {
-                    return Tour.query().$promise;
-                }],
-                hotels: ['Hotel', function(Hotel) {
-                    return Hotel.query().$promise;
-                }],
+                // places: ['Place', function(Place){
+                //   return Place.query().$promise;
+                // }],
+                // tours: ['entity', 'Tour', function(entity,Tour) {
+                //     return Tour.byplace({id : entity.id}).$promise;
+                // }],
+                // hotels: ['entity', 'Hotel',function(entity,Hotel) {
+                //     return Hotel.byplace({id : entity.id}).$promise;
+                // }],
                 mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
                     $translatePartialLoader.addPart('home');
                     return $translate.refresh();
