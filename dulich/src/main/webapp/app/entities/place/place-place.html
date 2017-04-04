@@ -64,8 +64,8 @@
               </span>
               </form>
             </div>
-            <div ng-bind="vm.sr">
-            <div class="card ui fluid"  ng-repeat="data in vm.sr">
+            <!-- <div ng-bind="vm.sr"> -->
+            <div class="card ui fluid"  ng-repeat="data in vm.posts">
               <div ng-if="vm.data.avatar">
                 <img data-ng-src="{{'data:' + data.avatarContentType + ';base64,' + data.avatar}}">
               </div>
@@ -78,7 +78,7 @@
                 </p>
               </div>
             </div>
-            </div>
+            
 
           </div>
         </div>

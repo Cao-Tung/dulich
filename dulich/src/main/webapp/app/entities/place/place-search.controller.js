@@ -13,7 +13,7 @@
         vm.sr= [];
         // vm.sr = Post.search({title : a});
         vm.postsview=postsview;
-        vm.postsearch= postsearch;
+        vm.sr= postsearch;
         // vm.places=places;
         // vm.posts = posts;
         // vm.tours = tours;
