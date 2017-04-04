@@ -1,0 +1,149 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<style>
+	#mapid { height: 180px; };
+</style>
+<link rel="stylesheet" type="text/css" href="/bower_components/semantic/dist/semantic.min.css">
+<link rel='stylesheet' href='/bower_components/textAngular/dist/textAngular.css'>
+<script src='/bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+<script src='/bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+<script src='/bower_components/textAngular/dist/textAngular.min.js'></script>
+
+<div class="ui grid ui" ng-cloak>
+	<div class="twelve wide column ui raised segment">
+		<h3>{{vm.post.title}}</h3>
+		<div id="mapid"></div>
+		<span class="label label-info"><i class="unhide icon"></i>&nbsp;Xem&nbsp;{{vm.post.view}}</span>
+		<hr>
+		<div class="fb-like" data-href="https://www.facebook.com/Du-L%E1%BB%8Bch-Xanh-176457449523977/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+		<br>
+		<dd>
+			<div ng-if="vm.post.avatar">
+				<img data-ng-src="{{'data:' + vm.post.avatarContentType + ';base64,' + vm.post.avatar}}" style="max-width: 100%;" alt="post image" class="ui centered image">
+				{{vm.byteSize(vm.post.avatar)}}
+			</div>
+		</dd>
+		<div ng-bind-html="vm.post.content"></div>
+	</div>
+	<div class="four wide column">
+		<div class="row well ui raised segment ">
+			<div class="five wide column">
+				<div class="">
+					<div class="ui-items">
+						<div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Đọc Nhiều</h5></div>
+						<a href="#" class="list-group-item" ng-repeat="post in vm.posts | limitTo: 5">
+							<div class="ui items">
+								<div class="item">
+									<div class="ui top aligned">
+										<i class="tags red icon"></i>
+									</div>
+									<div class="content">
+										<div class="description">
+											<p ui-sref="post-place({id:post.id})">{{post.title}}</p>
+											<p><small class="text-muted">{{post.view}} View</small></p>
+											<small class="text-muted">{{post.createDate}}</small>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row well ui raised segment ">
+			<div class="five wide column">
+				<div class="">
+					<div class="ui-items">
+						<div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Công Ty Tổ Chức Tour Sapa</h5></div>
+						<a href="#" class="list-group-item" ng-repeat="tour in vm.tours | limitTo: 5">
+							<div class="ui items">
+								<div class="item">
+									<div class="ui top aligned">
+										<i class="tags red icon"></i>
+									</div>
+									<div class="content">
+										<div class="description">
+											<p>{{tour.nameCompany}}</p>
+											<!-- 	<small class="text-muted">{{tour.createDate}}</small> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row well ui raised segment ">
+			<div class="five wide column">
+				<div class="">
+					<div class="ui-items">
+						<div class=" list-group-item  active"><h5 class="font-weight-bold text-center">Khách Sạn Gía Tốt</h5></div>
+						<a href="#" class="list-group-item" ng-repeat="hotel in vm.hotels | limitTo: 5">
+							<div class="ui items">
+								<div class="item">
+									<div class="ui top aligned">
+										<i class="tags red icon"></i>
+									</div>
+									<div class="content">
+										<div class="description">
+											<p>{{hotel.nameHotel}}</p>
+											<!-- 	<small class="text-muted">{{tour.createDate}}</small> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="row well ui raised segment ">
+			<p>Danh sách các bài viết</p>
+			<div ui middle aligned divided list>
+				<ul style="list-style-type: none">
+					<li ng-repeat="post in vm.posts">
+						<i class="tags red icon"></i>
+						<a class="content" ui-sref="post-detail({id: post.id})">
+							{{post.title}}
+						</a>	
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row well ui raised segment">
+			<p>Công ty tổ chức tour qua Sapa</p>
+			<div ui middle aligned divided list>
+				<ul style="list-style-type: none">
+					<li ng-repeat="tour in vm.tours">
+						<i class="tags red icon"></i>
+						<a class="content" ui-sref="tour-detail({id: tour.id})">
+							{{tour.nameCompany}}
+						</a>	
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row well ui raised segment">
+			<p>Danh sách khách sạn gía tốt</p>
+			<div ui middle aligned divided list>
+				<ul style="list-style-type: none">
+					<li ng-repeat="hotel in vm.hotels">
+						<i class="tags red icon"></i>
+						<a class="content" ui-sref="hotel-detail({id: hotel.id})">
+							{{hotel.nameHotel}}
+						</a>	
+					</li>
+				</ul>
+			</div>
+		</div> -->
+	</div>
+	<div class="fb-comments" data-href="http://localhost:8080/#/real-estate/detail//{{vm.post.id}}" data-numposts="5"></div>
+</div>
