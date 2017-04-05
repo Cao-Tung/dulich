@@ -18,9 +18,14 @@
         // vm.posts = posts;
         // vm.tours = tours;
         // vm.hotels = hotels;
+        // -- pagination -->
         vm.currentPage=1;
         vm.datas=[];
         vm.pageSize=8;
+        vm.size=vm.sr.length;
+        vm.currentPage=1;
+        vm.placeSize=vm.sr.length;
+        // <!-- //pagination-->
 
         vm.search = function(){
           if($scope.title!=undefined && $scope.title != ""){
@@ -43,7 +48,7 @@
             vm.sr=postsview;
           }
      }
-
+    //  pagination
      $scope.tong=function(){
       vm.size=vm.sr.length;
         return Math.ceil(vm.size/vm.pageSize);
@@ -55,5 +60,6 @@
       vm.datas=vm.sr.slice(begin,end);
       console.log(vm.datas);
   });
+  // /pagination
 }
 })();
