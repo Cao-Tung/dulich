@@ -22,6 +22,9 @@
                 }
             },
             resolve: {
+                // region: ['$stateParams','Region',function($stateParams,Region){
+                //     return Region.get({id : $stateParams.id}).$promise;
+                // }], // lấy ra các region theo id
                 mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
                     $translatePartialLoader.addPart('home');
                     return $translate.refresh();

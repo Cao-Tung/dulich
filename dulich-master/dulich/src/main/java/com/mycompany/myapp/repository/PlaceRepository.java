@@ -11,5 +11,5 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface PlaceRepository extends JpaRepository<Place,Long> {
-
+      List<Place> findAllByRegionIdOrderByIdDesc(long id);
 }

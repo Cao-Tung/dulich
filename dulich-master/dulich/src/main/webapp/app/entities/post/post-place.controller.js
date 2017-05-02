@@ -59,12 +59,5 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar'}).addTo
     vm.posts = posts;
     vm.tours = tours;
     vm.hotels = hotels;
-    vm.content = {
-      title:'Mai anh đào khoe sắc đầu xuân, hút khách hai miền',
-      image:'../content/images/ivivuSapa.jpg',
-      imageSapa:'../content/images/Sapa.jpg',
-      image1:'../content/images/ivivuSapa1.jpg',
-      image2:'../content/images/ivivuSapa2.jpg'
-    }
   }
 })();

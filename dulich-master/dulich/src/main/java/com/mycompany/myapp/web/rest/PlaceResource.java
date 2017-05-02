@@ -119,4 +119,19 @@ public class PlaceResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("place", id.toString())).build();
     }
 
+
+
+/**
+     * GET /places/name/{region_id} : get all the places by region_id.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of posts in
+     *         body
+     */
+    @GetMapping("/places/name/{region_id}")
+    @Timed
+    public List<Place> getAllPlaceByRegionId(@PathVariable Long region_id) {
+        log.debug("REST request to get a page of Places");
+        List<Place> places = placeRepository.findAllByRegionIdOrderByIdDesc(region_id);
+        return places;
+    }
 }

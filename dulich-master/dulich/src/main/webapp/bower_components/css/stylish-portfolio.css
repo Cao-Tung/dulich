@@ -15,7 +15,7 @@ body {
 body {
     font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-
+/*
 .text-vertical-center {
     display: table-cell;
     text-align: center;
@@ -29,7 +29,7 @@ body {
     font-weight: 700;
 }
 
-/* Custom Button Styles */
+
 
 .btn-dark {
     border-radius: 0;
@@ -55,17 +55,17 @@ body {
 .btn-light:active {
     color: #333;
     background-color: rgba(255,255,255,0.8);
-}
+}*/
 
-/* Custom Horizontal Rule */
 
+/*
 hr.small {
     max-width: 100px;
-}
+}*/
 
 /* Side Menu */
 
-#sidebar-wrapper {
+/*#sidebar-wrapper {
     z-index: 1000;
     position: fixed;
     right: 0;
@@ -125,16 +125,16 @@ hr.small {
 .sidebar-nav > .sidebar-brand a:hover {
     color: #fff;
     background: none;
-}
+}*/
 
-#menu-toggle {
+/*#menu-toggle {
     z-index: 1;
     position: fixed;
     top: 0;
     right: 0;
-}
+}*/
 
-#sidebar-wrapper.active {
+/*#sidebar-wrapper.active {
     right: 250px;
     width: 250px;
     -webkit-transition: all 0.4s ease 0s;
@@ -146,10 +146,10 @@ hr.small {
 
 .toggle {
     margin: 5px 5px 0 0;
-}
+}*/
 
 /* Header */
-
+/*
 .header {
     display: table;
     position: relative;
@@ -160,27 +160,27 @@ hr.small {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-}
+}*/
 
 /* About */
-
+/*
 .about {
     padding: 50px 0;
 }
 
 /* Services */
 
-.services {
+/*.services {
     padding: 50px 0;
 }
 
 .service-item {
     margin-bottom: 30px;
-}
+}*/
 
 /* Callout */
 
-.callout {
+/*.callout {
     display: table;
     width: 100%;
     height: 400px;
@@ -190,10 +190,10 @@ hr.small {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-}
+}*/
 
 /* Portfolio */
-
+/*
 .portfolio {
     padding: 50px 0;
 }
@@ -212,39 +212,39 @@ hr.small {
 
 /* Call to Action */
 
-.call-to-action {
+/*.call-to-action {
     padding: 50px 0;
 }
 
 .call-to-action .btn {
     margin: 10px;
-}
+}*/
 
 /* Map */
-
+/*
 .map {
     height: 500px;
-}
+}*/
 
-@media(max-width:768px) {
+/*@media(max-width:768px) {
     .map {
         height: 75%;
     }
-}
+}*/
 
-.map iframe {
+/*.map iframe {
     pointer-events: none;
-}
+}*/
 
 /* Footer */
 
-footer {
+/*footer {
     padding: 100px 0;
-}
+}*/
 
-#to-top {
+/*#to-top {
   display: none;
   position: fixed;
   bottom: 5px;
   right: 5px;
-}
+}*/

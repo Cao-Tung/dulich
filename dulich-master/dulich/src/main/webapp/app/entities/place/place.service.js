@@ -20,6 +20,18 @@
                     return data;
                 }
             },
+            'byregion': { //lấy tất cả các place có region_id là :region_id
+                method: 'GET',
+                url: 'api/places/name/:id',
+                isArray: true,
+                transformResponse: function (data) {
+                    if (data) {
+                        data = angular.fromJson(data);
+                        data.createdDate = DateUtils.convertDateTimeFromServer(data.createdDate);
+                    }
+                    return data;
+                }
+            },
             'update': { method:'PUT' }
         });
     }

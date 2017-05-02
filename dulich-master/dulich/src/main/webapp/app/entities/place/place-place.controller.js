@@ -17,6 +17,7 @@
         vm.posts = posts;
         vm.tours = tours;
         vm.hotels = hotels;
+        // vm.regions=regions;
         // -- pagination -->
         vm.currentPage=1;
         vm.datas=[];
@@ -27,19 +28,19 @@
         // <!-- //pagination-->
         $scope.checked=true;
 
-        $scope.color1="red";
+        $scope.color1="orange";
         $scope.color2="none";
 
 
         $scope.disable1=function(){
             $scope.checked=true;
-            $scope.color1="red";
+            $scope.color1="orange";
             $scope.color2="none";
         }
         $scope.disable2=function(){
             $scope.checked=false;
             $scope.color1="none";
-            $scope.color2="red";
+            $scope.color2="orange";
         }
 
 

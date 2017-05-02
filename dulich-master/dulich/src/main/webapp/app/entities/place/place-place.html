@@ -35,21 +35,6 @@ a:hover{
 <div class="container">
   <div class="row">
       <div class="col-md-8 col-xs-8">
-          <div class="first">
-                <h2 class="font-weight-bold"><strong><a href="#">Mộc Châu đã bắt đầu vào mua hoa mận rồi, rủ bạn bè đi săn ảnh đẹp thôi nào!</a></strong></h2>
-                <div class="row" >
-                      <div class="col-md-6 view">
-                            <img src="content/images/diemden/anh1.jpg " class="img-fluid hoverable"  alt="anh1.jpg">
-                      </div>
-                      <!-- main info-->
-                      <div class="col-md-6">
-                            <p>Đến Mộc Châu vào mùa hoa mận trắng, bạn sẽ như lạc vào xứ sở thần tiên bởi hoa mận phủ trắng khắp núi đồi, khắp thung lũng tạo thành cảnh đẹp như chốn thiên đường giữa lưng chừng mây.
-                            </p>
-                            <a href="" class="btn btn-primary">XEM CHI TIẾT >></a>
-                      </div>
-              </div>
-              <hr>
-        </div>
         <div class="row">
                   <div class="col-md-6 region" ng-repeat="data in vm.datas">
                     <div class="card-noborder hoverable ">
@@ -58,12 +43,12 @@ a:hover{
                             <a href="#"><div class="mask"></div></a>
                           </div>
                         <div class="card-block">
-                            <h4 class="card-title text-weight-bold text-justify"><strong><a href="#">{{data.title}}</a></strong></h4>
+                            <h4 class="card-title text-weight-bold text-justify"><strong><a ui-sref="post-place({id:data.id})">{{data.title}}</a></strong></h4>
                             <small class="text-muted">
-                                <span class="date ">ngày đăng: {{data.createDate}}</span>
-                                <span class="view">views: {{data.view}}</span>
+                                <span class="date "><i class="fa fa-clock-o blue-text" aria-hidden="true"></i> {{data.createDate}}</span> |
+                                <span class="view"><i class="fa fa-eye blue-text float-right" aria-hidden="true"></i> {{data.view}}</span>
                             </small>
-                              <p class="text-justify text-muted">{{data.content}}
+                              <p  class="text-justify text-muted" ng-bind-html="data.content">
                             </p>
                         </div>
                       </div>
@@ -78,59 +63,49 @@ a:hover{
           </div>
         </div>
       <div class="col-md-4 col-xs-4">
-                <!-- <div class="input-group">
-                    <input type="text" class="form-control" ng-model="title" placeholder="nhập Tên Địa điểm">
-                    <div class="input-group-btn">
-                      <button class="btn btn-default" ng-click="vm.search()">
-                        <i class="glyphicon glyphicon-search"></i>
-                      </button>
-                    </div>
-              </div> -->
-
               <div class="row list-group ">
-                  <div class="list-group-item hoverable" style="padding:0">
-                            <ul class="nav nav-tabs tabs-2 " role="tablist" >
-                                    <li class="nav-item">
-                                        <a ng-click="disable1()" style="background: {{color1}};">Đọc Nhiều</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a ng-click="disable2()" style="background: {{color2}};">Bài Mới</a>
-                                    </li>
-                            </ul>
-                  </div>
+                      <div class="list-group-item hoverable" style="padding:0">
+                                <ul class="nav nav-tabs tabs-2 " role="tablist" >
+                                        <li class="nav-item">
+                                            <a ng-click="disable1()" style="background: {{color1}};">Đọc Nhiều</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a ng-click="disable2()" style="background: {{color2}};">Bài Mới</a>
+                                        </li>
+                                </ul>
+                      </div>
                       <a class="list-group-item hoverable"  id="docnhieu" ng-repeat="x in vm.postsview | limitTo: 5" ng-show="checked">
-                        <div class="row">
-                            <div class="col-md-4">
-                              <img data-ng-src="{{'data:' + x.avatarContentType + ';base64,' + x.avatar}}" class="rounded" height="80px" width="100%"  alt="anh2.jpg">
-
+                            <div class="row">
+                                  <div class="col-md-4">
+                                    <img data-ng-src="{{'data:' + x.avatarContentType + ';base64,' + x.avatar}}" class="rounded" height="80px" width="100%"  alt="anh2.jpg">
+                                  </div>
+                                  <div class="col-md-8" style="padding: 0px">
+                                        <div ui-sref="post-place({id:x.id})">{{x.title}}
+                                        </div>
+                                        <div class="text-right">
+                                          <small><i class="fa fa-eye blue-text float-right" aria-hidden="true"></i> {{x.view}}</small>|
+                                          <small class="text-muted"><i class="fa fa-clock-o blue-text" aria-hidden="true"></i> {{x.createDate}}</small>
+                                        </div>
+                                  </div>
                             </div>
-                            <div class="col-md-8" style="padding: 0px">
-                                  <p>{{x.title | limitTo: 70}}
-                                  </p>
-
-                            </div>
-                        </div>
-                        <div class="row text-right">
-                            <small class="text-muted">ngay dang: {{x.createDate}}</small>
-                        </div>
                       </a>
                       <div  ng-show="!checked">
-                        <p>hello world</p>
                          <a class="list-group-item hoverable" ng-repeat="x in vm.newpost | limitTo: 5">
-                        <div class="row">
-                            <div class="col-md-4">
-                              <img data-ng-src="{{'data:' + x.avatarContentType + ';base64,' + x.avatar}}" class="rounded" height="80px" width="100%"  alt="anh2.jpg">
+                          <div class="row">
+                              <div class="col-md-4">
+                                <img data-ng-src="{{'data:' + x.avatarContentType + ';base64,' + x.avatar}}" class="rounded" height="80px" width="100%"  alt="anh2.jpg">
 
-                            </div>
-                            <div class="col-md-8" style="padding: 0px">
-                                  <p>{{x.title}}
-                                  </p>
+                              </div>
+                              <div class="col-md-8" style="padding: 0px">
+                                    <div ui-sref="post-place({id:x.id})">{{x.title}}
+                                    </div>
+                                    <div class="text-right">
+                                            <small><i class="fa fa-eye blue-text float-right" aria-hidden="true"></i> {{x.view}}</small> | 
+                                            <small class="text-muted"><i class="fa fa-clock-o blue-text" aria-hidden="true"></i> {{x.createDate}}</small>
+                                    </div>
 
-                            </div>
-                        </div>
-                        <div class="row text-right">
-                            <small class="text-muted">ngay dang: {{x.createDate}}</small>
-                        </div>
+                              </div>
+                          </div>
                       </a>
                     </div>
             </div>

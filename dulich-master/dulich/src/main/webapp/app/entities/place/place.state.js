@@ -86,9 +86,13 @@
                 postsview: ['Post',function(Post){
                     return Post.viewall().$promise;
                 }], // lấy ra tất cả các post được sxep bởi view
-                // postsearch: ['Place', function(Place){
-                //   return Post.search({title : "Hoa"}).$promise;
-                // }],
+                
+                // placeOfRegion: ['Place','regions', function(Place,regions){
+                //     return Place.byregion({id : regions.id}).$promise;
+                // }],// lấy ra các place theo region_id
+               
+
+
                 tours: ['entity', 'Tour', function(entity,Tour) {
                     return Tour.byplace({id : entity.id}).$promise;
                 }],
@@ -115,9 +119,7 @@
                 }
             },
             resolve: {
-                // entity: ['$stateParams', 'Place', function($stateParams, Place) {
-                //     return Place.get({id : $stateParams.id}).$promise;
-                // }],
+               
                 postsearch: ['$stateParams','Post', function($stateParams,Post){
                   return Post.search({title : $stateParams.title}).$promise;
                 }],
@@ -127,6 +129,9 @@
                 postsview: ['Post',function(Post){
                     return Post.viewall().$promise;
                 }],
+
+
+
                 // places: ['Place', function(Place){
                 //   return Place.query().$promise;
                 // }],
