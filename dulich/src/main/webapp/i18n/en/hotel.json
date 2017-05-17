@@ -1,0 +1,27 @@
+{
+    "dulichApp": {
+        "hotel" : {
+            "home": {
+                "title": "Hotels",
+                "createLabel": "Create a new Hotel",
+                "createOrEditLabel": "Create or edit a Hotel",
+                "search": "Search for Hotel"
+            },
+            "created": "A new Hotel is created with identifier {{ param }}",
+            "updated": "A Hotel is updated with identifier {{ param }}",
+            "deleted": "A Hotel is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Hotel {{ id }}?"
+            },
+            "detail": {
+                "title": "Hotel"
+            },
+            "nameHotel": "Name Hotel",
+            "avatar": "Avatar",
+            "link": "Link",
+            "price": "Price",
+            "place": "Place",
+            "tour": "Tour"
+        }
+    }
+}
