@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns='http://www.ehcache.org/v3'
+         xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.0.xsd">
+
+    <cache-template name="simple">
+        <expiry>
+            <ttl unit="seconds">3600</ttl>
+        </expiry>
+        <heap>100</heap>
+    </cache-template>
+
+    <cache alias="com.mycompany.myapp.domain.User" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Authority" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.User.authorities" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.PersistentToken" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.User.persistentTokens" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Region" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Region.places" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Place" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Place.posts" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Place.hotels" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Place.tours" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Post" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Hotel" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Hotel.tours" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Tour" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Tour.hotels" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Tour.places" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Region.nameRegions" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Place.namePlaces" uses-template="simple"/>
+
+    <cache alias="com.mycompany.myapp.domain.Tour.nameCompanies" uses-template="simple"/>
+
+    <!-- jhipster-needle-ehcache-add-entry -->
+</config>
