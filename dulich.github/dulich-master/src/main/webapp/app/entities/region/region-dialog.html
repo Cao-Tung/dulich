@@ -1,0 +1,60 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myRegionLabel" data-translate="dulichApp.region.home.createOrEditLabel">Create or edit a Region</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.region.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.region.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dulichApp.region.nameRegion" for="field_nameRegion">Name Region</label>
+            <input type="text" class="form-control" name="nameRegion" id="field_nameRegion"
+                    ng-model="vm.region.nameRegion"
+                     />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setAvatar($file, vm.region)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="dulichApp.region.avatar" for="field_avatar">Avatar</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.region.avatarContentType + ';base64,' + vm.region.avatar}}" style="max-height: 100px;" ng-if="vm.region.avatar" alt="region image"/>
+                <div ng-if="vm.region.avatar" class="help-block clearfix">
+                    <span class="pull-left">{{vm.region.avatarContentType}}, {{vm.byteSize(vm.region.avatar)}}</span>
+                    <button type="button" ng-click="vm.region.avatar=null;vm.region.avatarContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAvatar($file, vm.region)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="avatar" id="field_avatar"
+                    ng-model="vm.region.avatar"
+                    maxbytes="50000000" />
+            <input type="hidden" class="form-control" name="avatarContentType" id="field_avatarContentType"
+                    ng-model="vm.region.avatarContentType" />
+            <div ng-show="editForm.avatar.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.avatar.$error.maxbytes" data-translate="entity.validation.maxbytes" translate-value-max="50000000">
+                    This field cannot be more than 50000000.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

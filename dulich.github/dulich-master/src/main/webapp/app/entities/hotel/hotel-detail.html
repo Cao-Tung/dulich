@@ -1,0 +1,44 @@
+
+<div>
+    <h2><span data-translate="dulichApp.hotel.detail.title">Hotel</span> {{vm.hotel.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dulichApp.hotel.nameHotel">Name Hotel</span></dt>
+        <dd>
+            <span>{{vm.hotel.nameHotel}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.hotel.avatar">Avatar</span></dt>
+        <dd>
+            <div ng-if="vm.hotel.avatar">
+                <a ng-click="vm.openFile(vm.hotel.avatarContentType, vm.hotel.avatar)">
+                    <img data-ng-src="{{'data:' + vm.hotel.avatarContentType + ';base64,' + vm.hotel.avatar}}" style="max-width: 100%;" alt="hotel image"/>
+                </a>
+                {{vm.hotel.avatarContentType}}, {{vm.byteSize(vm.hotel.avatar)}}
+            </div>
+        </dd>
+        <dt><span data-translate="dulichApp.hotel.link">Link</span></dt>
+        <dd>
+            <span>{{vm.hotel.link}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.hotel.price">Price</span></dt>
+        <dd>
+            <span>{{vm.hotel.price}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.hotel.place">Place</span></dt>
+        <dd>
+            <a ui-sref="place-detail({id:vm.hotel.place.id})">{{vm.hotel.place.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="hotel-detail.edit({id:vm.hotel.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

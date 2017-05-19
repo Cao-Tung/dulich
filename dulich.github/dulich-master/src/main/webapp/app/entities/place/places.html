@@ -1,0 +1,69 @@
+<div>
+    <h2 data-translate="dulichApp.place.home.title">Places</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="place.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="dulichApp.place.home.createLabel">
+                        Create new Place
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="dulichApp.place.namePlace">Name Place</span></th>
+                    <th><span data-translate="dulichApp.place.avatar">Avatar</span></th>
+                    <th><span data-translate="dulichApp.place.content">Content</span></th>
+                    <th><span data-translate="dulichApp.place.region">Region</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="place in vm.places track by place.id">
+                    <td><a ui-sref="place-detail({id:place.id})">{{place.id}}</a></td>
+                    <td>{{place.namePlace}}</td>
+                    <td>
+                        <a ng-if="place.avatar" ng-click="vm.openFile(place.avatarContentType, place.avatar)">
+                            <img data-ng-src="{{'data:' + place.avatarContentType + ';base64,' + place.avatar}}" style="max-height: 30px;" alt="place image"/>
+                        </a>
+                        <span ng-if="place.avatar">{{place.avatarContentType}}, {{vm.byteSize(place.avatar)}}</span>
+                    </td>
+                    <td>{{place.content}}</td>
+                    <td>
+                        <a ui-sref="region-detail({id:place.region.id})">{{place.region.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="place-detail({id:place.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="place.edit({id:place.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="place.delete({id:place.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
