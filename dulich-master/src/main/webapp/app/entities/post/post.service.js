@@ -60,7 +60,7 @@
             },
             'byplace': { //lấy tất cả các post có id là :id
                 method: 'GET',
-                url: 'api/posts/place/:id',
+                url: 'api/posts/orderbydate',
                 isArray: true,
                 transformResponse: function (data) {
                     if (data) {
