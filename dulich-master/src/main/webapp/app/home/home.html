@@ -23,22 +23,18 @@ select, option{
                     <h3>Chọn Nơi Bạn Muốn Đến</h3>
                     <div class="row">
                         <strong><span>Vùng miền: </span></strong>
-                        <select>
-                            <option >Bắc</option>
-                            <option >Trung</option>
-                            <option >Nam</option>
+                        <select ng-click="vm.choose()" ng-model="vm.id">
+                            <option ng-repeat="region in vm.regions" value="{{region.id}}">{{region.nameRegion}}</option>
                         </select>
 
                         <strong><span>Địa điểm: </span></strong>
-                        <select>
-                            <option >Hà Nội</option>
-                            <option >Hải Phòng</option>
-                            <option >Cà Mau</option>
+                        <select ng-model="vm.idPlace">
+                            <option ng-repeat="option in vm.places" value="{{option.id}}">{{option.namePlace}}</option>
                         </select>
                     </div>
                     
             <div>
-                <a id="seach" href="#" class="btn btn-primary">
+                <a id="seach" class="btn btn-primary" ui-sref="place-place({id:vm.idPlace})">
                     Tìm Kiếm</a></div>
         </div>
       </div>
@@ -179,7 +175,7 @@ select, option{
 </div>
 <div class="row">
 <div class="container">
-<!-- <section id="contact">
+<section id="contact">
            <div class="row">
                <div class="col-md-8">
                       <div id="map-container" class="z-depth-1" style="height: 300px"></div>
@@ -200,7 +196,7 @@ select, option{
                    </ul>
                </div>
            </div>
-       </section> -->
+       </section>
   </div>
 </div>
 
