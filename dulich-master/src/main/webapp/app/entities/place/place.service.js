@@ -4,9 +4,9 @@
         .module('dulichApp')
         .factory('Place', Place);
 
-    Place.$inject = ['$resource', 'DateUtils'];
+    Place.$inject = ['$resource'];
 
-    function Place ($resource, DateUtils) {
+    function Place ($resource) {
         var resourceUrl =  'api/places/:id';
 
         return $resource(resourceUrl, {}, {

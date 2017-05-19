@@ -5,41 +5,19 @@
         .module('dulichApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'places', 'Place', 'regions'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
 
-    function HomeController ($scope, Principal, LoginService, $state, places, Place, regions) {
+    function HomeController ($scope, Principal, LoginService, $state) {
         var vm = this;
 
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
-        vm.regions = regions;
-        vm.region = [];
-        vm.places = [];
-        vm.id = [];
-        vm.idPlace = [];
         $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
 
-        vm.choose = function(){
-            Place.byregion({
-                id: vm.id
-            }, onSuccess, onError);
-
-            function onSuccess(data) {
-                console.log(vm.id);
-                console.log(data);
-                vm.places=data;
-                // console.log(vm.sr);
-            }
-
-            function onError(error) {
-                console.log("data");
-            }
-          }
-         
         getAccount();
 
         function getAccount() {
