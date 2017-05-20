@@ -1,0 +1,64 @@
+
+<div>
+    <h2><span data-translate="dulichApp.tour.detail.title">Tour</span> {{vm.tour.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dulichApp.tour.nameCompany">Name Company</span></dt>
+        <dd>
+            <span>{{vm.tour.nameCompany}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.tour.linkCompany">Link Company</span></dt>
+        <dd>
+            <span>{{vm.tour.linkCompany}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.tour.avatar">Avatar</span></dt>
+        <dd>
+            <div ng-if="vm.tour.avatar">
+                <a ng-click="vm.openFile(vm.tour.avatarContentType, vm.tour.avatar)">
+                    <img data-ng-src="{{'data:' + vm.tour.avatarContentType + ';base64,' + vm.tour.avatar}}" style="max-width: 100%;" alt="tour image"/>
+                </a>
+                {{vm.tour.avatarContentType}}, {{vm.byteSize(vm.tour.avatar)}}
+            </div>
+        </dd>
+        <dt><span data-translate="dulichApp.tour.phone">Phone</span></dt>
+        <dd>
+            <span>{{vm.tour.phone}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.tour.serviceTour">Service Tour</span></dt>
+        <dd>
+            <span>{{vm.tour.serviceTour}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.tour.price">Price</span></dt>
+        <dd>
+            <span>{{vm.tour.price}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.tour.content">Content</span></dt>
+        <dd>
+            <span>{{vm.tour.content}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.tour.place">Place</span></dt>
+        <dd>
+            <span ng-repeat="place in vm.tour.places">
+                <a ui-sref="place-detail({id: place.id})">{{place.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="dulichApp.tour.hotel">Hotel</span></dt>
+        <dd>
+            <span ng-repeat="hotel in vm.tour.hotels">
+                <a ui-sref="hotel-detail({id: hotel.id})">{{hotel.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="tour-detail.edit({id:vm.tour.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

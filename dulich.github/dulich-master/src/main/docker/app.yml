@@ -1,0 +1,16 @@
+version: '2'
+services:
+    dulich-app:
+        image: dulich
+        external_links:
+            - dulich-mariadb:mariadb
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/dulich
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    dulich-mariadb:
+        extends:
+            file: mariadb.yml
+            service: dulich-mariadb
