@@ -1,0 +1,32 @@
+
+<div>
+    <h2><span data-translate="dulichApp.region.detail.title">Region</span> {{vm.region.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dulichApp.region.nameRegion">Name Region</span></dt>
+        <dd>
+            <span>{{vm.region.nameRegion}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.region.avatar">Avatar</span></dt>
+        <dd>
+            <div ng-if="vm.region.avatar">
+                <a ng-click="vm.openFile(vm.region.avatarContentType, vm.region.avatar)">
+                    <img data-ng-src="{{'data:' + vm.region.avatarContentType + ';base64,' + vm.region.avatar}}" style="max-width: 100%;" alt="region image"/>
+                </a>
+                {{vm.region.avatarContentType}}, {{vm.byteSize(vm.region.avatar)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="region-detail.edit({id:vm.region.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
