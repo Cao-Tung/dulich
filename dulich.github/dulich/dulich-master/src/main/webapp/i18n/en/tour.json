@@ -1,0 +1,30 @@
+{
+    "dulichApp": {
+        "tour" : {
+            "home": {
+                "title": "Tours",
+                "createLabel": "Create a new Tour",
+                "createOrEditLabel": "Create or edit a Tour",
+                "search": "Search for Tour"
+            },
+            "created": "A new Tour is created with identifier {{ param }}",
+            "updated": "A Tour is updated with identifier {{ param }}",
+            "deleted": "A Tour is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tour {{ id }}?"
+            },
+            "detail": {
+                "title": "Tour"
+            },
+            "nameCompany": "Name Company",
+            "linkCompany": "Link Company",
+            "avatar": "Avatar",
+            "phone": "Phone",
+            "serviceTour": "Service Tour",
+            "price": "Price",
+            "content": "Content",
+            "place": "Place",
+            "hotel": "Hotel"
+        }
+    }
+}
