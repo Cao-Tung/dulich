@@ -1,0 +1,59 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "post",
+            "otherEntityName": "post",
+            "otherEntityRelationshipName": "place"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "hotel",
+            "otherEntityName": "hotel",
+            "otherEntityRelationshipName": "place"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "region",
+            "otherEntityName": "region",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "tour",
+            "otherEntityName": "tour",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "place"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "namePlace",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "avatar",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 50000000
+        },
+        {
+            "fieldName": "content",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10000
+        }
+    ],
+    "changelogDate": "20170228171654",
+    "entityTableName": "place",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

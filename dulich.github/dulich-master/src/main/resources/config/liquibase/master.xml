@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170228171653_added_entity_Region.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170228171654_added_entity_Place.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170228171655_added_entity_Post.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170228171656_added_entity_Hotel.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170228171657_added_entity_Tour.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20170228171654_added_entity_constraints_Place.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170228171655_added_entity_constraints_Post.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170228171656_added_entity_constraints_Hotel.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170228171657_added_entity_constraints_Tour.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

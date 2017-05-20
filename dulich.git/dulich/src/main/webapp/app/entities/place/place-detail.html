@@ -1,0 +1,40 @@
+
+<div>
+    <h2><span data-translate="dulichApp.place.detail.title">Place</span> {{vm.place.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dulichApp.place.namePlace">Name Place</span></dt>
+        <dd>
+            <span>{{vm.place.namePlace}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.place.avatar">Avatar</span></dt>
+        <dd>
+            <div ng-if="vm.place.avatar">
+                <a ng-click="vm.openFile(vm.place.avatarContentType, vm.place.avatar)">
+                    <img data-ng-src="{{'data:' + vm.place.avatarContentType + ';base64,' + vm.place.avatar}}" style="max-width: 100%;" alt="place image"/>
+                </a>
+                {{vm.place.avatarContentType}}, {{vm.byteSize(vm.place.avatar)}}
+            </div>
+        </dd>
+        <dt><span data-translate="dulichApp.place.content">Content</span></dt>
+        <dd>
+            <span>{{vm.place.content}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.place.region">Region</span></dt>
+        <dd>
+            <a ui-sref="region-detail({id:vm.place.region.id})">{{vm.place.region.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="place-detail.edit({id:vm.place.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

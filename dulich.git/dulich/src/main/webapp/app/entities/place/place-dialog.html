@@ -1,0 +1,82 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPlaceLabel" data-translate="dulichApp.place.home.createOrEditLabel">Create or edit a Place</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.place.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.place.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dulichApp.place.namePlace" for="field_namePlace">Name Place</label>
+            <input type="text" class="form-control" name="namePlace" id="field_namePlace"
+                    ng-model="vm.place.namePlace"
+                     />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setAvatar($file, vm.place)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="dulichApp.place.avatar" for="field_avatar">Avatar</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.place.avatarContentType + ';base64,' + vm.place.avatar}}" style="max-height: 100px;" ng-if="vm.place.avatar" alt="place image"/>
+                <div ng-if="vm.place.avatar" class="help-block clearfix">
+                    <span class="pull-left">{{vm.place.avatarContentType}}, {{vm.byteSize(vm.place.avatar)}}</span>
+                    <button type="button" ng-click="vm.place.avatar=null;vm.place.avatarContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAvatar($file, vm.place)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="avatar" id="field_avatar"
+                    ng-model="vm.place.avatar"
+                    maxbytes="50000000" />
+            <input type="hidden" class="form-control" name="avatarContentType" id="field_avatarContentType"
+                    ng-model="vm.place.avatarContentType" />
+            <div ng-show="editForm.avatar.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.avatar.$error.maxbytes" data-translate="entity.validation.maxbytes" translate-value-max="50000000">
+                    This field cannot be more than 50000000.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="dulichApp.place.content" for="field_content">Content</label>
+            <input type="text" class="form-control" name="content" id="field_content"
+                    ng-model="vm.place.content"
+                    required ng-maxlength="10000" />
+            <div ng-show="editForm.content.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.content.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.content.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="10000">
+                    This field cannot be longer than 10000 characters.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="dulichApp.place.region" for="field_region">Region</label>
+            <select class="form-control" id="field_region" name="region" ng-model="vm.place.region" ng-options="region as region.id for region in vm.regions track by region.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
