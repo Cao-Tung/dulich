@@ -22,18 +22,6 @@
                     <th><span data-translate="dulichApp.region.nameRegion">Name Region</span></th>
                     <th><span data-translate="dulichApp.region.avatar">Avatar</span></th>
                     <th></th>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="dulichApp.region.nameRegion">Name Region</span></th>
-                    <th><span data-translate="dulichApp.region.avatar">Avatar</span></th>
-                    <th></th>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="dulichApp.region.nameRegion">Name Region</span></th>
-                    <th><span data-translate="dulichApp.region.avatar">Avatar</span></th>
-                    <th></th>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="dulichApp.region.nameRegion">Name Region</span></th>
-                    <th><span data-translate="dulichApp.region.avatar">Avatar</span></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -42,15 +30,6 @@
                     <td>{{region.nameRegion}}</td>
                     <td>
                         <a ng-if="region.avatar" ng-click="vm.openFile(region.avatarContentType, region.avatar)">
-                            <img data-ng-src="{{'data:' + region.avatarContentType + ';base64,' + region.avatar}}" style="max-height: 30px;" alt="region image"/>
-                        </a>
-                         <a ng-if="region.avatar" ng-click="vm.openFile(region.avatarContentType, region.avatar)">
-                            <img data-ng-src="{{'data:' + region.avatarContentType + ';base64,' + region.avatar}}" style="max-height: 30px;" alt="region image"/>
-                        </a>
-                         <a ng-if="region.avatar" ng-click="vm.openFile(region.avatarContentType, region.avatar)">
-                            <img data-ng-src="{{'data:' + region.avatarContentType + ';base64,' + region.avatar}}" style="max-height: 30px;" alt="region image"/>
-                        </a>
-                         <a ng-if="region.avatar" ng-click="vm.openFile(region.avatarContentType, region.avatar)">
                             <img data-ng-src="{{'data:' + region.avatarContentType + ';base64,' + region.avatar}}" style="max-height: 30px;" alt="region image"/>
                         </a>
                         <span ng-if="region.avatar">{{region.avatarContentType}}, {{vm.byteSize(region.avatar)}}</span>
