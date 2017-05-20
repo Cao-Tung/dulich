@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span data-translate="dulichApp.post.detail.title">Post</span> {{vm.post.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="dulichApp.post.title">Title</span></dt>
+        <dd>
+            <span>{{vm.post.title}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.post.content">Content</span></dt>
+        <dd>
+            <span>{{vm.post.content}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.post.avatar">Avatar</span></dt>
+        <dd>
+            <div ng-if="vm.post.avatar">
+                <a ng-click="vm.openFile(vm.post.avatarContentType, vm.post.avatar)">
+                    <img data-ng-src="{{'data:' + vm.post.avatarContentType + ';base64,' + vm.post.avatar}}" style="max-width: 100%;" alt="post image"/>
+                </a>
+                {{vm.post.avatarContentType}}, {{vm.byteSize(vm.post.avatar)}}
+            </div>
+        </dd>
+        <dt><span data-translate="dulichApp.post.createDate">Create Date</span></dt>
+        <dd>
+            <span>{{vm.post.createDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.post.view">View</span></dt>
+        <dd>
+            <span>{{vm.post.view}}</span>
+        </dd>
+        <dt><span data-translate="dulichApp.post.place">Place</span></dt>
+        <dd>
+            <a ui-sref="place-detail({id:vm.post.place.id})">{{vm.post.place.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="post-detail.edit({id:vm.post.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "place",
+            "otherEntityName": "place",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "tour",
+            "otherEntityName": "tour",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "hotel"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nameHotel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "avatar",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 50000000
+        },
+        {
+            "fieldName": "link",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170228171656",
+    "entityTableName": "hotel",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}
